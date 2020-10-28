@@ -1,6 +1,8 @@
 # dcode.fr cipher identifier
 WIP of a script that tries to identify symbol ciphers (for now) available on [dcode.fr](https://www.dcode.fr/) based on input.
 
+A compiled list of all of the image symbols can be found in [CIPHERS.md](CIPHERS.md).
+
 #### Install
 ```
 git clone https://github.com/corax/dcode_identifier.git`
@@ -54,3 +56,6 @@ Uses [OpenCV](https://opencv.org/) to look for matching symbols.
 
 ##### `$ download_images.py`
 Downloads symbol pictures of each cipher and saves them to `./ciphers`, which also hosted in this repo.
+
+##### `$ generate_ciphers_md.py`
+Script that generates the [CIPHERS.md](CIPHERS.md) file based on ciphers and images in `./ciphers`.
