@@ -6,8 +6,9 @@ A compiled list of all of the image symbols can be found in [CIPHERS.md](CIPHERS
 #### Install
 ```
 git clone https://github.com/corax/dcode_identifier.git`
-cd dcode_identifier
+cd ./dcode_identifier
 pip install -r requirements.txt
+CC="cc -mavx2" pip install -U --force-reinstall pillow-simd
 ```
 
 #### Requirements
