@@ -54,11 +54,11 @@ Top ciphers:
 Compares the symbols of each cipher to the input image `<image>` and lists the the match probability.
 Uses [OpenCV](https://opencv.org/) to look for matching symbols.
 
-##### `$ download_images.py`
+##### `$ scripts/download_images.py`
 Downloads symbol pictures of each cipher and saves them to `./ciphers`, which also hosted in this repo.
 
-##### `$ generate_combined_images.py`
+##### `$ scripts/generate_combined_images.py`
 Script that generates the combined images of each cipher found in [CIPHERS.md](CIPHERS.md) ./ciphers`.
 
-##### `$ generate_ciphers_md.py`
+##### `$ scripts/generate_ciphers_md.py`
 Script that generates the [CIPHERS.md](CIPHERS.md) file based on ciphers found in `./ciphers`.
