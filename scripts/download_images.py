@@ -2,8 +2,9 @@
 import os
 import re
 import requests
+import pathlib
 
-BASE_PATH = "{}/ciphers".format(pathlib.Path(__file__).parent.absolute())
+BASE_PATH = "{}/ciphers".format(pathlib.Path(__file__).resolve().parents[1].absolute())
 BASE_URL = "https://www.dcode.fr"
 HOME_MESSAGE = "dCode</a> offers tools to win for sure, for example the <"
 
@@ -54,6 +55,7 @@ def download_cipher_images(cipher):
         image_url = "{}/{}".format(images_url, image_filename)
         print("Fetching image: '{}' and saving it to {}".format(image_filename, cipher_images_path))
         r = requests.get(image_url)
+
         if r.status_code != 200:
             print("[ERROR] Something went wrong when downloading image, status code: {}".format(r.status_code))
             exit(1)

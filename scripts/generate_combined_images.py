@@ -25,7 +25,7 @@ GRID_LINE_WIDTH = 0.5
 
 #############################################################################
 
-BASE_PATH = pathlib.Path(__file__).parent.absolute()
+BASE_PATH = pathlib.Path(__file__).resolve().parents[1].absolute()
 CIPHERS_PATH = "{}/ciphers".format(BASE_PATH)
 CIPHERS = sorted(next(os.walk(CIPHERS_PATH))[1])
 
