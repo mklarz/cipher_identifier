@@ -1,12 +1,23 @@
 #!/usr/bin/python
 import os
 import re
+import cv2
 import requests
 import pathlib
+import numpy as np
 
 BASE_PATH = "{}/ciphers".format(pathlib.Path(__file__).resolve().parents[1].absolute())
 BASE_URL = "https://www.dcode.fr"
 HOME_MESSAGE = "dCode</a> offers tools to win for sure, for example the <"
+
+def crop_image(img):
+    # https://stackoverflow.com/a/49907762
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray = 255*(gray < 128).astype(np.uint8) # To invert the text to white
+    coords = cv2.findNonZero(gray) # Find all non-zero points (text)
+    x, y, w, h = cv2.boundingRect(coords) # Find minimum spanning bounding box
+    rect = img[y:y+h, x:x+w] # Crop the image - note we do this on the original image
+    return rect
 
 def download_cipher_images(cipher):
     cipher_base_path = "{}/{}".format(BASE_PATH, cipher)
@@ -59,9 +70,23 @@ def download_cipher_images(cipher):
         if r.status_code != 200:
             print("[ERROR] Something went wrong when downloading image, status code: {}".format(r.status_code))
             exit(1)
-        
-        with open(image_path, 'wb') as f:
-            f.write(r.content)
+
+        # Read the image into CV2
+        nparr = np.frombuffer(r.content, np.uint8)
+        image = cv2.imdecode(nparr, cv2.IMREAD_UNCHANGED)
+
+        # Crop the image (remove borders i.e.)
+        image = crop_image(image)
+
+        # For debugging, show the image
+        """
+        cv2.imshow('image',image)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+        exit(0)
+        """
+
+        cv2.imwrite(image_path, image)
 
         images_downloaded.add(i)
 
