@@ -3,6 +3,7 @@ import os
 import sys
 import cv2
 import glob
+import time
 import pathlib
 import numpy as np
 
@@ -63,6 +64,7 @@ def calculate_weight(values):
 
 cipher_weights = {}
 for cipher in ciphers:
+    start = time.process_time()
     print("Checking:", cipher, end=" = ")
     cipher_path = "{}/{}".format(BASE_PATH, cipher)
     images_path = "{}/images".format(cipher_path)
@@ -74,8 +76,11 @@ for cipher in ciphers:
         values.append(get_minimum_value(filename))
 
     weight = calculate_weight(values)
-    print(weight)
+    print(weight, end="")
     cipher_weights[cipher] = weight
+
+    end = time.process_time() - start
+    print(", took {} seconds".format(end))
 
 # Sort the by weight
 cipher_weights = {k: v for k, v in sorted(cipher_weights.items(), reverse=True, key=lambda item: item[1])}
