@@ -63,3 +63,6 @@ Script that generates the combined images of each cipher found in [CIPHERS.md](C
 
 ##### `$ scripts/generate_ciphers_md.py`
 Script that generates the [CIPHERS.md](CIPHERS.md) file based on ciphers found in `./ciphers`.
+
+##### `$ scripts/generate_train_data.py`
+Script that generates train data per cipher, for training model classifiers. Training data is placed in `./ciphers/<cipher>/train_data`.

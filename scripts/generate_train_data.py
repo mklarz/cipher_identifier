@@ -157,18 +157,18 @@ def generate_random_symbols(images):
     return images[0:symbol_count]
 
 
-def generate_test_data(cipher, i=1000, image_minmax_size=DEFAULT_IMAGE_MINMAX_SIZE):
+def generate_train_data(cipher, i=1000, image_minmax_size=DEFAULT_IMAGE_MINMAX_SIZE):
     cipher_path = "{}/{}".format(CIPHERS_PATH, cipher)
     cipher_images_path = "{}/images".format(cipher_path)
-    test_images_path = "{}/test_data".format(cipher_path)
-    os.makedirs(test_images_path , exist_ok=True)
+    train_images_path = "{}/train_data".format(cipher_path)
+    os.makedirs(train_images_path , exist_ok=True)
 
     image_paths = sorted(glob.glob("{}/*.png".format(cipher_images_path)))
     images = [Image.open(path) for path in image_paths]
     image_count = len(images)
     print("Cipher image count:", image_count)
 
-    test_data = {}
+    train_data = {}
     digit_count = len(str(i))
 
     for nr in range(i):
@@ -199,14 +199,14 @@ def generate_test_data(cipher, i=1000, image_minmax_size=DEFAULT_IMAGE_MINMAX_SI
             image_characters += c
 
         # Save the image
-        test_image_filename = "{}.png".format(str(nr).zfill(digit_count))
-        print("filename={}".format(test_image_filename), end=", ")
-        image.save("{}/{}.png".format(test_images_path, test_image_filename))
+        train_image_filename = "{}.png".format(str(nr).zfill(digit_count))
+        print("filename={}".format(train_image_filename), end=", ")
+        image.save("{}/{}.png".format(train_images_path, train_image_filename))
         
-        # Save the test data to a json file
-        test_data[nr] = image_characters
-        with open("{}/test_data.json".format(cipher_path), "w") as f:
-            json.dump(test_data, f)
+        # Save the train data to a json file
+        train_data[nr] = image_characters
+        with open("{}/train_data.json".format(cipher_path), "w") as f:
+            json.dump(train_data, f)
 
         print("time_taken={}s".format(time.process_time() - start_time), end="]\n")
 
@@ -214,5 +214,5 @@ def generate_test_data(cipher, i=1000, image_minmax_size=DEFAULT_IMAGE_MINMAX_SI
 # TODO: only generate based on sysargv input, might be spammy to generate for all ciphers
 print("Found {} ciphers".format(len(CIPHERS)))
 for cipher in CIPHERS:
-    print("Generating test images for cipher:", cipher)
-    generate_test_data(cipher, i=1000)
+    print("Generating train images for cipher:", cipher)
+    generate_train_data(cipher, i=1000)
