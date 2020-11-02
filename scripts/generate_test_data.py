@@ -216,4 +216,3 @@ print("Found {} ciphers".format(len(CIPHERS)))
 for cipher in CIPHERS:
     print("Generating test images for cipher:", cipher)
     generate_test_data(cipher, i=1000)
-    exit(0)
