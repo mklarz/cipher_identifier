@@ -2,212 +2,218 @@
 import os
 import math
 import glob
+import time
+import json
 import pathlib
+import random
+import numpy as np
 from PIL import Image, ImageDraw
 
-BASE_PATH = pathlib.Path(__file__).parent.absolute()
-CIPHERS_PATH = "{}/ciphers".format(BASE_PATH)
-CIPHERS = sorted(next(os.walk(CIPHERS_PATH))[1])
+DEFAULT_IMAGE_MIN_SIZE = (450, 100) # (width, height)
+DEFAULT_IMAGE_MAX_SIZE = (800, 300) # (width, height)
+DEFAULT_IMAGE_MINMAX_SIZE = (DEFAULT_IMAGE_MIN_SIZE, DEFAULT_IMAGE_MAX_SIZE)
 
 #############################################################################
 
+BASE_PATH = pathlib.Path(__file__).resolve().parents[1].absolute()
+CIPHERS_PATH = "{}/ciphers".format(BASE_PATH)
+CIPHERS = sorted(next(os.walk(CIPHERS_PATH))[1])
 
-def generate_combined_image(
-    image_paths,
-    images_per_row,
-    background_color,
-    padding_pixels,
-    add_initial_padding,
-    draw_grid,
-    grid_line_width,
-    grid_line_color,
-):
-    image_count = len(image_paths)
-    expected_row_count = math.ceil(image_count / images_per_row)
+def get_random_image_size(image_minmax_size):
+    return (
+        random.randint(
+            image_minmax_size[0][0], # min width
+            image_minmax_size[1][0], # max width
+        ),
+        random.randint(
+            image_minmax_size[0][0], # min height
+            image_minmax_size[1][0], # max height
+        ),
+    )
 
-    # Are all the image sizes identical? (and load the images into a list)
-    identical = True
-    images = []
-    last_size = None
-    for image_path in image_paths:
-        image = Image.open(image_path)
-        images.append(image)
-        if last_size is not None and last_size != image.size:
-            identical = False
-        last_size = image.size
+def get_random_color():
+    # Make sure we don't get a black image
+    min_value = 10
+    max_value = 256
+    return (
+        random.randrange(min_value, max_value), # R
+        random.randrange(min_value, max_value), # G
+        random.randrange(min_value, max_value), # B
+        random.randrange(min_value, max_value), # A
+    )
 
-    if identical:
-        # Get the size (width, height) of the images (they are identical),
-        image_size = images[0].size
-        image_width = image_size[0]
-        image_final_width = image_width + (padding_pixels * 2)
-        image_height = image_size[1]
-        image_final_height = image_height + (padding_pixels * 2)
+def is_overlap(l1, r1, l2, r2):
+    # https://stackoverflow.com/a/54489667
+    if l1[0] > r2[0] or l2[0] > r1[0]:
+        return False
 
-        # Calculate the image width and handle the extra padding
-        combined_width = image_final_width * images_per_row
-        combined_width += (padding_pixels * 2) if add_initial_padding else 0
+    if l1[1] > r2[1] or l2[1] > r1[1]:
+        return False
 
-        # Calculate the image height and handle the extra padding
-        combined_height = image_final_height * expected_row_count
-        combined_height += (padding_pixels * 2) if add_initial_padding else 0
-    else:
-        """
-        The sizes are different, we need to loop through the images
-        and calculate the width and height by checking each image per row.
-        """
-        x, y = 0, 0
-        rows = []
-        row_width = 0
-        row_height = 0
-        for image_index, image in enumerate(images):
-            x += image.size[0]
+    return True
 
-            if image.size[1] > row_height:
-                # We have a image that's taller than another image in the row
-                row_height = image.size[1]
+def generate_image(images, background_color=(255, 255, 255, 255), padding=5):
+    # Find the width and height by chec
+    """
+    Find the width by summing the width of all the images (and padding)
+    Find the height by finding the tallest image of the bunch
+    """
+    width = 0
+    height = 0
+    for image in images:
+        width += image.size[0] + padding
+        if image.size[1] > height:
+            height = image.size[1]
 
-            # Increase the row width
-            row_width += image.size[0]
+    size = (width, height)
 
-            if image_index > 0 and image_index % images_per_row == 0:
-                # New row, reset variables
-                x = 0
-                rows.append((row_width, row_height))
-                row_width = 0
-                row_height = 0
+    background = Image.new('RGBA', size, background_color)
 
-        # Add the last row if missing
-        if expected_row_count != len(rows):
-            rows.append((row_width, row_height))
+    x = 0
+    for image in images:
+        offset = (x, 0)
+        background.paste(image, offset, mask=image)
+        x += image.size[0] + padding
 
-        # Find widest row and add padding
-        combined_width = max([row[0] for row in rows])
-        combined_width += padding_pixels * ((images_per_row * 2) - 1)
-        combined_width += padding_pixels if add_initial_padding else 0
-
-        # Sum the height of the rows and add padding
-        combined_height = sum([row[1] for row in rows])
-        #combined_height += (padding_pixels * (len(rows) + (1 if add_initial_padding else 0)))
-        combined_height += padding_pixels * (len(rows) * 2)
-        combined_height += padding_pixels if add_initial_padding else 0
-
-    # Create the initial image with white background
-    combined = Image.new('RGB', (combined_width, combined_height), background_color)
-
-    # Initial positioning
-    reset_x = padding_pixels if add_initial_padding else 0
-    reset_y = padding_pixels if add_initial_padding else 0
-
-    reset_x += padding_pixels
-    reset_y += padding_pixels
-
-    x, y = reset_x, reset_y
-
-    x_end = combined.size[0] - (padding_pixels if add_initial_padding else 0)
-    y_end = combined.size[1] - (padding_pixels if add_initial_padding else 0)
-
-    # Loop through all the images and add them to the combined image
-    row_index = 0
+    return background 
 
 
-    for i, image in enumerate(images):
-        image_index = i + 1
-        combined.paste(image, (x, y), mask=image.convert("RGBA"))
 
-        # New row
-        if identical:
-            row_height = image_final_height
-        else:
-            row_height = rows[row_index][1] + (padding_pixels * 2)
+# TODO: start using this
+def place_images(images, image_minmax_size,  background_color=(255,255,255)):
+    size = get_random_image_size(image_minmax_size)
+    print("size={}".format(size), end=", ")
 
-        is_last_row = (row_index + 1) == expected_row_count
-        is_new_row = image_index != 1 and image_index % images_per_row == 0
-        is_last_image = image_index == image_count
-        is_last_image_of_row = image_index % images_per_row == 0
+    # White background image
+    background = Image.new('RGB', size, (255, 255, 255))
 
-        # Add vertical grid line?
-        if draw_grid and x != reset_x:
-            # Find the x position between the rows and add a line there
-            line_x = x - padding_pixels - (grid_line_width / 2)
-            line_y_end = row_height
+    # Random color to fade into the white background
+    background_color = get_random_color()
+    print("background_color={}".format(background_color), end=", ")
+    foreground = Image.new('RGBA', size, background_color)
 
-            if row_index == 0 or is_last_row:
-                if is_last_row:
-                    line_y_start = y - padding_pixels
-                    line_y_end = y_end
-                else:
-                    line_y_start = padding_pixels if add_initial_padding else 0
-                    line_y_end += padding_pixels if add_initial_padding else 0
-            else:
-                line_y_start = y - padding_pixels
-                line_y_end += line_y_start
+    # We now have our base image
+    background.paste(foreground, (0, 0), foreground)
 
-            draw = ImageDraw.Draw(combined)
-            draw.rectangle([
-                    (line_x, line_y_start),
-                    (line_x + grid_line_width, line_y_end)
-                ],
-                fill=grid_line_color
-            )
+    # https://stackoverflow.com/a/54489667
+    # and modified for random scale/ratio
+    alread_paste_point_list = []
+    for img in images:
+        # Resize the image/symbol randomly
+        seed = random.randint(1, 6)
+        width = img.size[0]
+        width += random.randint(
+            width - (width // seed),
+            width + (width // seed),
+        )
+        # To change the 1:1 scale
+        # seed = random.randint(1, 6)
+        height = img.size[1]
+        height += random.randint(
+            height - (height // seed),
+            height + (height // seed),
+        )
+        img = img.resize((width, height), Image.ANTIALIAS)
 
-        """
-        # Add the last vertical line to each row?
-        if is_last_image or is_last_image_of_row:
-            # Add the last vertical line
-            line_x += image_final_width if identical else (image.size[0] + (padding_pixels * 2))
-            draw = ImageDraw.Draw(combined)
-            draw.rectangle([
-                    (line_x, line_y_start),
-                    (line_x + grid_line_width, line_y_end)
-                ],
-                fill=grid_line_color
-            )
-        """
+        # TODO: Rotate?
 
-        if not is_new_row:
-            # Just increase the current x position
-            x += image_final_width if identical else (image.size[0] + (padding_pixels * 2))
-        else:
-            # New row
-            x = reset_x
-            y += row_height
+        # if all not overlap, find the none-overlap start point
+        while True:
+            # left-top point
+            # x, y = random.randint(0, background.size[0]), random.randint(0, background.size[1])
 
-            # Add horizontal grid line?
-            if draw_grid and not is_last_row:
-                # Find the y position between the rows and add a line there
-                line_x = padding_pixels if add_initial_padding else 0
-                line_y = y - padding_pixels - (grid_line_width / 2)
-                draw = ImageDraw.Draw(combined)
-                draw.rectangle([
-                        (line_x, line_y),
-                        (x_end, line_y + grid_line_width)
-                    ],
-                    fill=grid_line_color
-                )
+            # if image need in the bg area, use this
+            x = random.randint(0, max(0, background.size[0] - img.size[0]))
+            y = random.randint(0, max(0, background.size[1] - img.size[1]))
 
-            row_index += 1
+            # right-bottom point
+            l2, r2 = (x, y), (x + img.size[0], y + img.size[1])
 
-    return combined
+            if all(not is_overlap(l1, r1, l2, r2) for l1, r1 in alread_paste_point_list):
+                # save alreay pasted points for checking overlap
+                alread_paste_point_list.append((l2, r2))
+                background.paste(img, (x, y), img)
+                break
+
+    return background
+
+def generate_background_image(size, color):
+    # White background image
+    background = Image.new('RGB', size, (255, 255, 255))
+
+def generate_random_symbols(images):
+    image_count = len(images)
+
+    divider = 6
+
+    # How many symbols should we use?
+    symbol_count = random.randint(
+        (image_count // divider),
+        image_count - (image_count // divider),
+    )
+    print("symbol_count={}".format(symbol_count), end=", ")
+
+    random.shuffle(images)
+    return images[0:symbol_count]
 
 
-for cipher in CIPHERS:
-    print("Generating combined images for cipher:", cipher)
+def generate_test_data(cipher, i=1000, image_minmax_size=DEFAULT_IMAGE_MINMAX_SIZE):
     cipher_path = "{}/{}".format(CIPHERS_PATH, cipher)
     cipher_images_path = "{}/images".format(cipher_path)
+    test_images_path = "{}/test_data".format(cipher_path)
+    os.makedirs(test_images_path , exist_ok=True)
+
     image_paths = sorted(glob.glob("{}/*.png".format(cipher_images_path)))
+    images = [Image.open(path) for path in image_paths]
+    image_count = len(images)
+    print("Cipher image count:", image_count)
 
-    for draw_grid in (True, False):
-        combined_image = generate_combined_image(
-            image_paths=image_paths,
-            images_per_row=IMAGES_PER_ROW,
-            background_color=BACKGROUND_COLOR,
-            padding_pixels=PADDING_PIXELS,
-            add_initial_padding=INITIAL_PADDING,
-            draw_grid=draw_grid,
-            grid_line_width=GRID_LINE_WIDTH,
-            grid_line_color=GRID_LINE_COLOR,
-        )
-        combined_path = "{}/combined{}.png".format(cipher_path, "_grid" if draw_grid else "")
-        combined_image.save(combined_path, "PNG")
+    test_data = {}
+    digit_count = len(str(i))
 
+    for nr in range(i):
+        start_time = time.process_time()
+        print("Generating image #{} [".format(nr + 1), end="")
+
+        symbols = generate_random_symbols(images)
+
+        operation = random.randint(1, 3)
+        # TODO: remove, we only use the first operation now
+        operation = 1
+        print("operation={}".format(operation), end=", ")
+
+        if operation == 1:
+            # Combine the symbols into a new image and place it within the original image
+            image = generate_image(symbols)
+        elif operation == 2:
+            # Place x amount of symbols randomly around the image
+            image = place_images(symbols, image_minmax_size)
+
+
+        # Map the ASCII codes to characters
+        image_characters = ""
+        for symbol in symbols:
+            # Get the symbol number (ASCII code)
+            d = int(os.path.basename(symbol.filename).replace(".png", ""))
+            c = chr(d)
+            image_characters += c
+
+        # Save the image
+        test_image_filename = "{}.png".format(str(nr).zfill(digit_count))
+        print("filename={}".format(test_image_filename), end=", ")
+        image.save("{}/{}.png".format(test_images_path, test_image_filename))
+        
+        # Save the test data to a json file
+        test_data[nr] = image_characters
+        with open("{}/test_data.json".format(cipher_path), "w") as f:
+            json.dump(test_data, f)
+
+        print("time_taken={}s".format(time.process_time() - start_time), end="]\n")
+
+
+# TODO: only generate based on sysargv input, might be spammy to generate for all ciphers
+print("Found {} ciphers".format(len(CIPHERS)))
+for cipher in CIPHERS:
+    print("Generating test images for cipher:", cipher)
+    generate_test_data(cipher, i=1000)
+    exit(0)
