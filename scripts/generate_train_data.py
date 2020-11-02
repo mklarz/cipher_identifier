@@ -53,30 +53,61 @@ def is_overlap(l1, r1, l2, r2):
 
     return True
 
+
+def tesseract_box_string(character, left, bottom, right, top, page=0):
+    # Tesseract box file.
+    # Coordinates for ecah symbol in the iamge
+    # NB! (0, 0) at bottom-left corner of the image!
+    # See https://tesseract-ocr.github.io/tessdoc/Training-Tesseract-%E2%80%93-Make-Box-Files.html
+    return "{} {} {} {} {} {}\n".format(
+        character,
+        left,
+        bottom,
+        right,
+        top,
+        page
+    )
+
 def generate_image(images, background_color=(255, 255, 255, 255), padding=5):
-    # Find the width and height by chec
     """
     Find the width by summing the width of all the images (and padding)
     Find the height by finding the tallest image of the bunch
     """
-    width = 0
-    height = 0
+    background_width = padding * 2
+    background_height = 0
     for image in images:
-        width += image.size[0] + padding
-        if image.size[1] > height:
-            height = image.size[1]
+        background_width += image.size[0] + padding
+        if image.size[1] > background_height:
+            background_height = image.size[1]
+    background_height += padding * 2
 
-    size = (width, height)
+    # Intialize the background image
+    background_size = (background_width, background_height)
+    background = Image.new('RGBA', background_size, background_color)
+    x = padding
+    y = padding
 
-    background = Image.new('RGBA', size, background_color)
-
-    x = 0
+    # For tesseract, we need to map the coordinates for each symbol
+    tesseract_boxes = ""
     for image in images:
-        offset = (x, 0)
+        width, height = image.size
+
+        # Find ASCII character and map its coordinates
+        character = get_symbol_characters([image])
+        tesseract_boxes += tesseract_box_string(
+            character=character,
+            left=x,
+            bottom=background_height - y - height,
+            right=x + width,
+            top=background_height - y 
+        )
+
+        # Append the image to the symbol
+        offset = (x, y)
         background.paste(image, offset, mask=image)
-        x += image.size[0] + padding
+        x += width + padding
 
-    return background 
+    return background, tesseract_boxes
 
 
 
@@ -142,10 +173,18 @@ def generate_background_image(size, color):
     # White background image
     background = Image.new('RGB', size, (255, 255, 255))
 
-def generate_random_symbols(images):
-    image_count = len(images)
+def get_symbol_characters(symbols):
+    # Map the ASCII codes to characters
+    symbol_characters = ""
+    for symbol in symbols:
+        # Get the symbol number (ASCII code)
+        d = int(os.path.basename(symbol.filename).replace(".png", ""))
+        c = chr(d)
+        symbol_characters += c
+    return symbol_characters
 
-    divider = 6
+def generate_random_symbols(images, divider=6):
+    image_count = len(images)
 
     # How many symbols should we use?
     symbol_count = random.randint(
@@ -168,7 +207,7 @@ def generate_train_data(cipher, i=1000, image_minmax_size=DEFAULT_IMAGE_MINMAX_S
     image_count = len(images)
     print("Cipher image count:", image_count)
 
-    train_data = {}
+    charset = "".join([chr(int(os.path.basename(path).replace(".png", ""))) for path in image_paths])
     digit_count = len(str(i))
 
     for nr in range(i):
@@ -176,37 +215,36 @@ def generate_train_data(cipher, i=1000, image_minmax_size=DEFAULT_IMAGE_MINMAX_S
         print("Generating image #{} [".format(nr + 1), end="")
 
         symbols = generate_random_symbols(images)
+        image_characters = get_symbol_characters(symbols)
+        train_filename = str(nr).zfill(digit_count) # 0000, 0001, 0002, etc.
 
-        operation = random.randint(1, 3)
+        #operation = random.randint(1, 3)
         # TODO: remove, we only use the first operation now
         operation = 1
         print("operation={}".format(operation), end=", ")
 
         if operation == 1:
             # Combine the symbols into a new image and place it within the original image
-            image = generate_image(symbols)
+            image, tesseract_boxes = generate_image(symbols)
         elif operation == 2:
             # Place x amount of symbols randomly around the image
-            image = place_images(symbols, image_minmax_size)
-
-
-        # Map the ASCII codes to characters
-        image_characters = ""
-        for symbol in symbols:
-            # Get the symbol number (ASCII code)
-            d = int(os.path.basename(symbol.filename).replace(".png", ""))
-            c = chr(d)
-            image_characters += c
-
-        # Save the image
-        train_image_filename = "{}.png".format(str(nr).zfill(digit_count))
-        print("filename={}".format(train_image_filename), end=", ")
-        image.save("{}/{}.png".format(train_images_path, train_image_filename))
+            # TODO: enable again later?
+            # image = place_images(symbols, image_minmax_size)
+            pass
         
-        # Save the train data to a json file
-        train_data[nr] = image_characters
-        with open("{}/train_data.json".format(cipher_path), "w") as f:
-            json.dump(train_data, f)
+        # Save the image
+        train_image_filename = "{}.png".format(train_filename)
+        print("filename={}".format(train_image_filename), end=", ")
+        image.save("{}/{}".format(train_images_path, train_image_filename))
+
+        # Save the tesseract boxes
+        with open("{}/{}.box".format(train_images_path, train_filename), "w") as f:
+            f.write(tesseract_boxes)
+
+        # TODO: tesseract
+        # Plaintext file for tesseract
+        with open("{}/{}.gt.txt".format(train_images_path, train_filename), "w") as f:
+            f.write(image_characters)
 
         print("time_taken={}s".format(time.process_time() - start_time), end="]\n")
 
