@@ -16,6 +16,7 @@ DEFAULT_IMAGE_MINMAX_SIZE = (DEFAULT_IMAGE_MIN_SIZE, DEFAULT_IMAGE_MAX_SIZE)
 #############################################################################
 
 BASE_PATH = pathlib.Path(__file__).resolve().parents[1].absolute()
+TRAIN_DATA_PATH = "{}/models/train".format(BASE_PATH)
 CIPHERS_PATH = "{}/ciphers".format(BASE_PATH)
 CIPHERS = sorted(next(os.walk(CIPHERS_PATH))[1])
 
@@ -160,9 +161,8 @@ def generate_random_symbols(images):
 def generate_train_data(cipher, i=1000, image_minmax_size=DEFAULT_IMAGE_MINMAX_SIZE):
     cipher_path = "{}/{}".format(CIPHERS_PATH, cipher)
     cipher_images_path = "{}/images".format(cipher_path)
-    train_images_path = "{}/train_data".format(cipher_path)
+    train_images_path = "{}/{}".format(TRAIN_DATA_PATH, cipher)
     os.makedirs(train_images_path , exist_ok=True)
-
     image_paths = sorted(glob.glob("{}/*.png".format(cipher_images_path)))
     images = [Image.open(path) for path in image_paths]
     image_count = len(images)
