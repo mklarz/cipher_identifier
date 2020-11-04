@@ -12,6 +12,8 @@ from PIL import Image, ImageDraw
 
 DEFAULT_IMAGE_MIN_SIZE = (450, 100) # (width, height)
 DEFAULT_IMAGE_MAX_SIZE = (800, 300) # (width, height)
+PADDING_MIN_MAX = (1, 4)
+SPACE_PADDING_MIN_MAX = (5, 10)
 DEFAULT_IMAGE_MINMAX_SIZE = (DEFAULT_IMAGE_MIN_SIZE, DEFAULT_IMAGE_MAX_SIZE)
 
 SPACE_SYMBOL = None
@@ -138,7 +140,7 @@ def generate_sentences(charset, wordlist, limit, add_special_sentences=True):
     # Start generating the sentences
     while sentence_count < limit:
         # How many words do we want in the sentence
-        sentence_word_count = random.randint(1, 4)
+        sentence_word_count = random.randint(1, 6)
         current_words = set()
         current_word_count = 0
 
@@ -236,11 +238,25 @@ def tesseract_box_string(character, left, bottom, right, top, page=0):
         page
     )
 
-def generate_image(images, background_color=(255, 255, 255, 255), padding=5, space_padding=15):
+def generate_image(
+    images,
+    background_color=(255, 255, 255, 255),
+    padding_min_max=PADDING_MIN_MAX,
+    space_padding_min_max=SPACE_PADDING_MIN_MAX,
+):
     """
     Find the width by summing the width of all the images (and padding)
     Find the height by finding the tallest image of the bunch
     """
+    padding = random.randint(
+        padding_min_max[0],
+        padding_min_max[1],
+    )
+    space_padding = random.randint(
+        space_padding_min_max[0],
+        space_padding_min_max[1],
+    )
+
     background_width = padding * 2
     background_height = 0
     for image in images:
