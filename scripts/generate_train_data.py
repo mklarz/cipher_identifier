@@ -14,6 +14,8 @@ DEFAULT_IMAGE_MIN_SIZE = (450, 100) # (width, height)
 DEFAULT_IMAGE_MAX_SIZE = (800, 300) # (width, height)
 DEFAULT_IMAGE_MINMAX_SIZE = (DEFAULT_IMAGE_MIN_SIZE, DEFAULT_IMAGE_MAX_SIZE)
 
+SPACE_SYMBOL = None
+
 #############################################################################
 
 BASE_PATH = pathlib.Path(__file__).resolve().parents[1].absolute()
@@ -234,7 +236,7 @@ def tesseract_box_string(character, left, bottom, right, top, page=0):
         page
     )
 
-def generate_image(images, background_color=(255, 255, 255, 255), padding=5, space_pixels=10):
+def generate_image(images, background_color=(255, 255, 255, 255), padding=5, space_padding=15):
     """
     Find the width by summing the width of all the images (and padding)
     Find the height by finding the tallest image of the bunch
@@ -242,9 +244,12 @@ def generate_image(images, background_color=(255, 255, 255, 255), padding=5, spa
     background_width = padding * 2
     background_height = 0
     for image in images:
-        background_width += image.size[0] + padding
-        if image.size[1] > background_height:
-            background_height = image.size[1]
+        if image == SPACE_SYMBOL:
+            background_width += space_padding
+        else:
+            background_width += image.size[0] + padding
+            if image.size[1] > background_height:
+                background_height = image.size[1]
     background_height += padding * 2
 
     # Intialize the background image
@@ -256,6 +261,10 @@ def generate_image(images, background_color=(255, 255, 255, 255), padding=5, spa
     # For tesseract, we need to map the coordinates for each symbol
     tesseract_boxes = ""
     for image in images:
+        if image == SPACE_SYMBOL:
+            x += space_padding
+            continue
+
         width, height = image.size
 
         # Find ASCII character and map its coordinates
@@ -362,6 +371,21 @@ def generate_random_symbols(images, divider=6):
     random.shuffle(images)
     return images[0:symbol_count]
 
+def get_symbols_from_text(symbol_mapping, text):
+    symbols = []
+    for character in text:
+        if not character or character == " ":
+            symbols.append(SPACE_SYMBOL)
+        else:
+            symbols.append(symbol_mapping[character])
+    return symbols
+
+def generate_symbol_mapping(images):
+    mapping = {}
+    for image in images:
+        c = chr(int(os.path.basename(image.filename).replace(".png", "")))
+        mapping[c] = image
+    return mapping
 
 def generate_train_data(cipher, wordlist, limit=1000, image_minmax_size=DEFAULT_IMAGE_MINMAX_SIZE):
     cipher_path = "{}/{}".format(CIPHERS_PATH, cipher)
@@ -372,22 +396,22 @@ def generate_train_data(cipher, wordlist, limit=1000, image_minmax_size=DEFAULT_
 
     # TODO: normalize/clean images for training
     images = [Image.open(path) for path in image_paths]
+    symbol_mapping = generate_symbol_mapping(images)
     image_count = len(images)
     print("Cipher image count:", image_count)
 
-    charset = "".join([chr(int(os.path.basename(path).replace(".png", ""))) for path in image_paths])
+    charset = "".join(symbol_mapping.keys())
+    print("Cipher charset:", charset)
     digit_count = len(str(limit))
 
     sentences = generate_sentences(charset, wordlist, limit)
-    print("HAIR", sentences)
-    exit(0)
 
-    for nr in range(limit):
+    for nr, sentence in enumerate(sentences):
         start_time = time.process_time()
-        print("Generating image #{} [".format(nr + 1), end="")
+        print("Generating image #{} [sentence=\"{}\"".format(nr + 1, sentence), end="")
 
-        symbols = generate_random_symbols(images)
-        image_characters = get_symbol_characters(symbols)
+        symbols = get_symbols_from_text(symbol_mapping, sentence)
+
         train_filename = str(nr).zfill(digit_count) # 0000, 0001, 0002, etc.
 
         #operation = random.randint(1, 3)
@@ -416,7 +440,7 @@ def generate_train_data(cipher, wordlist, limit=1000, image_minmax_size=DEFAULT_
         # TODO: tesseract
         # Plaintext file for tesseract
         with open("{}/{}.gt.txt".format(train_images_path, train_filename), "w") as f:
-            f.write(image_characters)
+            f.write(sentence)
 
         print("time_taken={}s".format(time.process_time() - start_time), end="]\n")
 
