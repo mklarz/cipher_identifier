@@ -6,6 +6,7 @@ import time
 import json
 import pathlib
 import random
+import collections
 import numpy as np
 from PIL import Image, ImageDraw
 
@@ -19,6 +20,171 @@ BASE_PATH = pathlib.Path(__file__).resolve().parents[1].absolute()
 TRAIN_DATA_PATH = "{}/models/train".format(BASE_PATH)
 CIPHERS_PATH = "{}/ciphers".format(BASE_PATH)
 CIPHERS = sorted(next(os.walk(CIPHERS_PATH))[1])
+
+# TODO: add additional sentences that should be used for each cipher
+SENTENCES = [
+    "The quick brown fox jumps over the lazy dog",
+]
+
+CHARSET_LEETSPEAK_MAPPING = {
+    "a": "4",
+    "b": "8",
+    "e": "3",
+    "g": "6",
+    "i": "1",
+    "r": "2",
+    "s": "5",
+    "t": "7",
+}
+
+# TODO: need to add more
+CHARSET_SYMBOL_MAPPING = {
+    "a": "@",
+    "e": "€",
+    "i": "!",
+    "s": "$",
+}
+
+def transform_characters(sentence, sentence_charset, special_charset, chance=0.9):
+    # Replace characters in the sentence with the specified charset (with a chance of swapping)
+    sentence_lowercase = sentence.lower()
+    sentence = list(sentence)
+
+    for index, character in enumerate(sentence_lowercase):
+        if character not in special_charset \
+        or special_charset[character] not in sentence_charset \
+        or random.random() > chance:
+            continue
+        sentence[index] = special_charset[character]
+
+    return "".join(sentence)
+
+
+
+def transform_sentence(sentence, sentence_charset, leetspeak=False, special=False):
+    # Transform the sentence to use special characters as specified by the arguments
+    transformed_sentence = None
+    if leetspeak and special:
+        transformed_sentence = transform_characters(
+            sentence,
+            sentence_charset,
+            CHARSET_LEETSPEAK_MAPPING,
+            chance=0.4
+        )
+        transformed_sentence = transform_characters(
+            transformed_sentence,
+            sentence_charset,
+            CHARSET_SYMBOL_MAPPING,
+        )
+    elif leetspeak:
+        transformed_sentence = transform_characters(
+            sentence,
+            sentence_charset,
+            CHARSET_LEETSPEAK_MAPPING,
+        )
+    elif special:
+        transformed_sentence = transform_characters(
+            sentence,
+            sentence_charset,
+            CHARSET_SYMBOL_MAPPING,
+        )
+
+    return transformed_sentence if transformed_sentence and sentence != transformed_sentence else None
+
+
+def word_characters_exists_in_charset(word, charset, case_insensitive=False):
+    if case_insensitive:
+        word = word.lower()
+        charset = charset.lower()
+
+    for character in word:
+        if character not in charset:
+            # Character does not exist in the charset
+            return False
+
+    return True
+
+def generate_sentences(charset, wordlist, limit, add_special_sentences=True):
+    # Shuffle the provided wordlist and transform it into a Deque object
+    random.shuffle(wordlist)
+    wordlist = collections.deque(wordlist)
+
+    # Lower the charset for more efficient substring comparison later
+    charset_lowercase = charset.lower()
+
+    # Check the characteristic of the charset
+    # Most ciphers only include uppercase letters
+    charset_has_lower = False
+    charset_has_upper = False
+    charset_has_digits = False
+    charset_has_specials = False
+    for character in charset:
+        if character.isdigit():
+            charset_has_digits = True
+        elif character.islower():
+            charset_has_lower = True
+        elif character.isupper():
+            charset_has_upper = True
+        else:
+            # TODO: not character.isalnum()?
+            charset_has_specials = True
+
+    # Initialize required variables
+    sentences = set()
+    sentence_count = 0
+
+    # Start generating the sentences
+    while sentence_count < limit:
+        # How many words do we want in the sentence
+        sentence_word_count = random.randint(1, 4)
+        current_words = set()
+        current_word_count = 0
+
+        while current_word_count < sentence_word_count:
+            # Select the next word in our shuffled wordlist
+            word = wordlist.pop()
+            # Lowercase it for more efficient comparison
+            word_lowercase = word.lower()
+
+            # Check if the characters in the word exist in our charset
+            if not word_characters_exists_in_charset(word_lowercase, charset_lowercase):
+                # A character in the word does not exist in our charset, skip this word and continue
+                continue
+
+            if not charset_has_lower:
+                # Charset does not have any lowercase words, let's uppercase the current word
+                word = word.upper()
+            elif not charset_has_upper:
+                # Charset does not have any uppercase words, let's use the lowercase one
+                word = word_lowercase
+
+            current_words.add(word)
+            current_word_count += 1
+
+        sentence = " ".join(current_words)
+
+        # Add the sentence to our list of sentences
+        sentences.add(sentence)
+        sentence_count += 1
+
+        if add_special_sentences \
+        and sentence_count < limit \
+        and (charset_has_digits or charset_has_specials):
+            # Let's add additional a special (typical CTF) sentence to the list
+            special_sentence = transform_sentence(
+                sentence,
+                charset_lowercase,
+                leetspeak=charset_has_digits,
+                special=charset_has_specials,
+            )
+
+            # Add the sentence to the list if it's different from the original sentence
+            if special_sentence and special_sentence != sentence:
+                sentences.add(special_sentence)
+                sentence_count += 1
+
+    return sentences
+
 
 def get_random_image_size(image_minmax_size):
     return (
@@ -68,7 +234,7 @@ def tesseract_box_string(character, left, bottom, right, top, page=0):
         page
     )
 
-def generate_image(images, background_color=(255, 255, 255, 255), padding=5):
+def generate_image(images, background_color=(255, 255, 255, 255), padding=5, space_pixels=10):
     """
     Find the width by summing the width of all the images (and padding)
     Find the height by finding the tallest image of the bunch
@@ -197,20 +363,26 @@ def generate_random_symbols(images, divider=6):
     return images[0:symbol_count]
 
 
-def generate_train_data(cipher, i=1000, image_minmax_size=DEFAULT_IMAGE_MINMAX_SIZE):
+def generate_train_data(cipher, wordlist, limit=1000, image_minmax_size=DEFAULT_IMAGE_MINMAX_SIZE):
     cipher_path = "{}/{}".format(CIPHERS_PATH, cipher)
     cipher_images_path = "{}/images".format(cipher_path)
     train_images_path = "{}/{}".format(TRAIN_DATA_PATH, cipher)
     os.makedirs(train_images_path , exist_ok=True)
     image_paths = sorted(glob.glob("{}/*.png".format(cipher_images_path)))
+
+    # TODO: normalize/clean images for training
     images = [Image.open(path) for path in image_paths]
     image_count = len(images)
     print("Cipher image count:", image_count)
 
     charset = "".join([chr(int(os.path.basename(path).replace(".png", ""))) for path in image_paths])
-    digit_count = len(str(i))
+    digit_count = len(str(limit))
 
-    for nr in range(i):
+    sentences = generate_sentences(charset, wordlist, limit)
+    print("HAIR", sentences)
+    exit(0)
+
+    for nr in range(limit):
         start_time = time.process_time()
         print("Generating image #{} [".format(nr + 1), end="")
 
@@ -249,8 +421,15 @@ def generate_train_data(cipher, i=1000, image_minmax_size=DEFAULT_IMAGE_MINMAX_S
         print("time_taken={}s".format(time.process_time() - start_time), end="]\n")
 
 
+# Load the british wordlist
+with open("{}/wordlists/languages/british-english-stripped".format(BASE_PATH)) as f:
+    wordlist = f.read().splitlines()
+
 # TODO: only generate based on sysargv input, might be spammy to generate for all ciphers
+# For 1k: python scripts/generate_train_data.py  1.39s user 0.52s system 133% cpu 1.432 total
+# For 50k: python scripts/generate_train_data.py  49.69s user 6.18s system 99% cpu 55.908 total
 print("Found {} ciphers".format(len(CIPHERS)))
 for cipher in CIPHERS:
     print("Generating train images for cipher:", cipher)
-    generate_train_data(cipher, i=1000)
+    generate_train_data(cipher, wordlist, limit=1000)
+    exit(0)
