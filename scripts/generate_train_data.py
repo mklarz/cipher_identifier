@@ -108,7 +108,14 @@ def word_characters_exists_in_charset(word, charset, case_insensitive=False):
 
     return True
 
-def generate_sentences(charset, wordlist, limit, add_special_sentences=True):
+def generate_sentences(
+    charset,
+    wordlist,
+    limit,
+    add_special_sentences=True,
+    add_digit_sentences=True,
+    digit_sentences_ratio=10 # Everything 10th sentence will be digits only
+):
     # Shuffle the provided wordlist and transform it into a Deque object
     random.shuffle(wordlist)
     wordlist = collections.deque(wordlist)
@@ -122,8 +129,10 @@ def generate_sentences(charset, wordlist, limit, add_special_sentences=True):
     charset_has_upper = False
     charset_has_digits = False
     charset_has_specials = False
+    charset_digits = []
     for character in charset:
         if character.isdigit():
+            charset_digits.append(character)
             charset_has_digits = True
         elif character.islower():
             charset_has_lower = True
@@ -141,31 +150,41 @@ def generate_sentences(charset, wordlist, limit, add_special_sentences=True):
     while sentence_count < limit:
         # How many words do we want in the sentence
         sentence_word_count = random.randint(1, 6)
-        current_words = set()
-        current_word_count = 0
 
-        while current_word_count < sentence_word_count:
-            # Select the next word in our shuffled wordlist
-            word = wordlist.pop()
-            # Lowercase it for more efficient comparison
-            word_lowercase = word.lower()
+        if add_digit_sentences \
+        and charset_has_digits \
+        and sentence_count % digit_sentences_ratio == 0:
+            # This sentence should be digits only
+            digits = []
+            for _ in range(sentence_word_count):
+                digit_count = random.randint(4, 10)
+                digits.append("".join(random.choices(charset_digits, k=digit_count)))
+            sentence = " ".join(digits)
+        else:
+            current_words = set()
+            current_word_count = 0
+            while current_word_count < sentence_word_count:
+                # Select the next word in our shuffled wordlist
+                word = wordlist.pop()
+                # Lowercase it for more efficient comparison
+                word_lowercase = word.lower()
 
-            # Check if the characters in the word exist in our charset
-            if not word_characters_exists_in_charset(word_lowercase, charset_lowercase):
-                # A character in the word does not exist in our charset, skip this word and continue
-                continue
+                # Check if the characters in the word exist in our charset
+                if not word_characters_exists_in_charset(word_lowercase, charset_lowercase):
+                    # A character in the word does not exist in our charset, skip this word and continue
+                    continue
 
-            if not charset_has_lower:
-                # Charset does not have any lowercase words, let's uppercase the current word
-                word = word.upper()
-            elif not charset_has_upper:
-                # Charset does not have any uppercase words, let's use the lowercase one
-                word = word_lowercase
+                if not charset_has_lower:
+                    # Charset does not have any lowercase words, let's uppercase the current word
+                    word = word.upper()
+                elif not charset_has_upper:
+                    # Charset does not have any uppercase words, let's use the lowercase one
+                    word = word_lowercase
 
-            current_words.add(word)
-            current_word_count += 1
+                current_words.add(word)
+                current_word_count += 1
 
-        sentence = " ".join(current_words)
+            sentence = " ".join(current_words)
 
         # Add the sentence to our list of sentences
         sentences.add(sentence)
@@ -173,6 +192,7 @@ def generate_sentences(charset, wordlist, limit, add_special_sentences=True):
 
         if add_special_sentences \
         and sentence_count < limit \
+        and sentence_count % digit_sentences_ratio != 0 \
         and (charset_has_digits or charset_has_specials):
             # Let's add additional a special (typical CTF) sentence to the list
             special_sentence = transform_sentence(
@@ -299,7 +319,6 @@ def generate_image(
         x += width + padding
 
     return background, tesseract_boxes
-
 
 
 # TODO: start using this
@@ -438,6 +457,9 @@ def generate_train_data(cipher, wordlist, limit=1000, image_minmax_size=DEFAULT_
         if operation == 1:
             # Combine the symbols into a new image and place it within the original image
             image, tesseract_boxes = generate_image(symbols)
+
+            # TODO: create variants for each image
+            # Variants: pixelated, glass, cutout, sprayed, etc.
         elif operation == 2:
             # Place x amount of symbols randomly around the image
             # TODO: enable again later?
@@ -471,5 +493,5 @@ with open("{}/wordlists/languages/british-english-stripped".format(BASE_PATH)) a
 print("Found {} ciphers".format(len(CIPHERS)))
 for cipher in CIPHERS:
     print("Generating train images for cipher:", cipher)
-    generate_train_data(cipher, wordlist, limit=1000)
+    generate_train_data(cipher, wordlist, limit=10000)
     exit(0)
