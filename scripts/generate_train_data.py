@@ -404,11 +404,11 @@ def generate_train_data(cipher, wordlist, limit=1000, image_minmax_size=DEFAULT_
     print("Cipher charset:", charset)
     digit_count = len(str(limit))
 
-    sentences = generate_sentences(charset, wordlist, limit)
+    sentences = generate_sentences(charset, wordlist, limit, add_special_sentences=False)
 
     for nr, sentence in enumerate(sentences):
         start_time = time.process_time()
-        print("Generating image #{} [sentence=\"{}\"".format(nr + 1, sentence), end="")
+        print("Generating image #{} [sentence=\"{}\"".format(nr + 1, sentence), end=", ")
 
         symbols = get_symbols_from_text(symbol_mapping, sentence)
 
