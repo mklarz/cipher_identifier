@@ -1,10 +1,11 @@
 import os
+import pathlib
 import sys
 import time
-import pathlib
+
 import tesserocr
 from PIL import Image
-from tesserocr import PyTessBaseAPI, RIL, PSM, OEM
+from tesserocr import OEM, PSM, RIL, PyTessBaseAPI
 
 if len(sys.argv) != 2:
     print("[ERROR] Invalid amount or no arguments")
@@ -20,7 +21,13 @@ if not os.path.exists(image_path):
 BASE_PATH = pathlib.Path(__file__).resolve().parent.absolute()
 # TESSDATA_PATH = "/usr/share/tessdata"
 TESSDATA_PATH = "{}/models/tessdata".format(BASE_PATH)
-CIPHER_LANGUAGES = sorted([f.replace(".traineddata", "") for f in os.listdir(TESSDATA_PATH) if "traineddata" in f])
+CIPHER_LANGUAGES = sorted(
+    [
+        f.replace(".traineddata", "")
+        for f in os.listdir(TESSDATA_PATH)
+        if "traineddata" in f
+    ]
+)
 
 """
 PSM:
@@ -68,12 +75,19 @@ for cipher_language in CIPHER_LANGUAGES:
     print(", took {} seconds".format(end))
 
 # Sort the by confidence
-cipher_results = {k: v for k, v in sorted(cipher_results.items(), reverse=True, key=lambda item: item[1]["confidence"])}
+cipher_results = {
+    k: v
+    for k, v in sorted(
+        cipher_results.items(), reverse=True, key=lambda item: item[1]["confidence"]
+    )
+}
 
 print("=" * 32)
 print("Top ciphers:")
 for index, cipher in enumerate(cipher_results):
     result = cipher_results[cipher]
-    print(index + 1, "{}%".format(result["confidence"]), cipher, result["text"], sep="\t")
+    print(
+        index + 1, "{}%".format(result["confidence"]), cipher, result["text"], sep="\t"
+    )
 
 print("=" * 32)
