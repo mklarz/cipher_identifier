@@ -66,9 +66,9 @@ def download_cipher_images(cipher, redownload=False):
     cipher_images_path = "{}/images".format(cipher_base_path)
 
     # Find the images
-    url = requests.utils.requote_uri("{}/{}".format(BASE_URL, cipher))
-    print("Trying to look up cipher URL:", url)
-    r = requests.get(url, headers={"User-agent": "scrape"})
+    cipher_url = requests.utils.requote_uri("{}/{}".format(BASE_URL, cipher))
+    print("Trying to look up cipher URL:", cipher_url)
+    r = requests.get(cipher_url, headers={"User-agent": "scrape"})
     content = r.content.decode()
 
     # Check if the cipher is valid
@@ -197,6 +197,7 @@ def download_cipher_images(cipher, redownload=False):
         "title": cipher_title,
         "description": cipher_description,
         "tags": cipher_tags,
+        "source_url": cipher_url,
         "charset_information": cipher_charset_information,
         "questions": mapped_questions,
     }
