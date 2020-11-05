@@ -58,26 +58,26 @@
         ],
         "charset": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     },
-    "description": "Dotsies is a writing font created to speed up reading, its alphabet uses letters composed of points in vertical position that replace the letters of the Latin alphabet.",
+    "description": "Tool to decrypt / encrypt or read the Dotsies. Dotsies is a writing font created to speed up reading, its alphabet uses letters composed of points in vertical position that replace the letters of the Latin alphabet.",
     "questions": [
         {
-            "answer": "Dotsies is a pixelized alphabet which replace the Latin alphabet (considered to be aging) and created to offer compact writing and fast reading. Each of the 26 letters is replaced by a vertical bar consisting of 5 points that can be black or white / empty. The complete alphabet is:ABCDEFGHIJKLMNOPQRSTUVWXYZ Example: DOTSIES is written  The Dotsies writing on this page includes a tiny space between each character, whereas in theory this space should tend to 0. ",
+            "answer": "Dotsies is a pixelized alphabet which replace the Latin alphabet (considered to be aging) and created to offer compact writing and fast reading. Each of the 26 letters is replaced by a vertical bar consisting of 5 points that can be black or white / empty. The complete alphabet is:ABCDEFGHIJKLMNOPQRSTUVWXYZ Example: DOTSIES is written  The Dotsies writing on this page includes a tiny space between each character, whereas in theory this space should tend to 0.",
             "question": "How to encrypt/write using Dotsies font?"
         },
         {
-            "answer": "Dotsies decryption/reading consists in learn the alphabet and/or replace each letter (vertical bar) with its equivalent among the 26 letters of the alphabet. Example:  is read DCODE ",
+            "answer": "Dotsies decryption/reading consists in learn the alphabet and/or replace each letter (vertical bar) with its equivalent among the 26 letters of the alphabet. Example:  is read DCODE",
             "question": "How to decrypt/read Dotsies font?"
         },
         {
-            "answer": "Dotsies is composed of 1 to 5 black square dots arranged vertically. Some dots can touch and form a rectangle (or other forms if letters are concatenated). The Dotsies is designed to be compact, tightened to take up less space and be quick to read. Words written in Dotsies can make one think of the automatons from the Conway's game of life. ",
+            "answer": "Dotsies is composed of 1 to 5 black square dots arranged vertically. Some dots can touch and form a rectangle (or other forms if letters are concatenated). The Dotsies is designed to be compact, tightened to take up less space and be quick to read. Words written in Dotsies can make one think of the automatons from the Conway's game of life.",
             "question": "How to recognize a Dotsies ciphertext?"
         },
         {
-            "answer": "A modified/rectified version optimized to visually code base64 has been created by Faust here (link) ",
+            "answer": "A modified/rectified version optimized to visually code base64 has been created by Faust here (link)",
             "question": "What are dotsies' variant?"
         },
         {
-            "answer": "Craig Muth designed Dotsies in 2012 here (link) ",
+            "answer": "Craig Muth designed Dotsies in 2012 here (link)",
             "question": "When Dotsies have been invented ?"
         }
     ],

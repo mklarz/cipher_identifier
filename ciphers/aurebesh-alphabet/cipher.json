@@ -82,22 +82,22 @@
         ],
         "charset": " !$?ABCDEFGHIJKLMNOPQRSTUVWXYZaceknost"
     },
-    "description": "",
+    "description": "Tool to write / convert messages from / to the Aurebesh alphabet, a writing system used to write in Basic, a language used in the Star Wars universe.",
     "questions": [
         {
-            "answer": "Aurebesh is an alphabet from the Star Wars Universe, whose name consists of the first 2 letters: Aurek and Besh. It appears in various films and series of the Star Wars saga and transcribes Basic, the most common language in the galaxy. ",
+            "answer": "Aurebesh is an alphabet from the Star Wars Universe, whose name consists of the first 2 letters: Aurek and Besh. It appears in various films and series of the Star Wars saga and transcribes Basic, the most common language in the galaxy.",
             "question": "What is Aurebesh?"
         },
         {
-            "answer": "The Aurebesh alphabet comprises around forty signs and symbols, each with a name and a possible correspondence with the Latin / English alphabet:AurekABeshBCreshCCherekCHDornDEskEEnth\u00c6OnithEOFornFGrekGHerfHIskIJenthJKrillKKrenthKHLethLMernMNernNNenNGOskOOrenthOOPethPQekQReshRSenthSShenSHTrillTTheshTHUskUVevVWeskWXeshXYirtYZerekZ Example: STAR is written as  The currency symbol is  (with small bars similar to currencies like the dollar $ or the Euro \u20ac) ",
+            "answer": "The Aurebesh alphabet comprises around forty signs and symbols, each with a name and a possible correspondence with the Latin / English alphabet:AurekABeshBCreshCCherekCHDornDEskEEnth\u00c6OnithEOFornFGrekGHerfHIskIJenthJKrillKKrenthKHLethLMernMNernNNenNGOskOOrenthOOPethPQekQReshRSenthSShenSHTrillTTheshTHUskUVevVWeskWXeshXYirtYZerekZ Example: STAR is written as  The currency symbol is  (with small bars similar to currencies like the dollar $ or the Euro \u20ac)",
             "question": "How to write in Aurebesh?"
         },
         {
-            "answer": "Aurebesh is a substitution of characters, decryption / translation individually replaces the symbols with the corresponding letter(s). Example:  is translated BASIC ",
+            "answer": "Aurebesh is a substitution of characters, decryption / translation individually replaces the symbols with the corresponding letter(s). Example:  is translated BASIC",
             "question": "How to decrypt Aurebesh cipher?"
         },
         {
-            "answer": "Aurebesh symbols are not very complex, sometimes angular, sometimes rounded and overall rather wide. All references to the Star Wars universe or the Galactic Basic language are clues. ",
+            "answer": "Aurebesh symbols are not very complex, sometimes angular, sometimes rounded and overall rather wide. All references to the Star Wars universe or the Galactic Basic language are clues.",
             "question": "How to recognize a Aurebesh alphabet?"
         }
     ],

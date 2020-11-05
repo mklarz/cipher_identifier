@@ -78,10 +78,10 @@
         ],
         "charset": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     },
-    "description": "The draconic language is the language of the dragons, it exists many variants, one of these has been popularized in the Skyrim video game.",
+    "description": "Tool to decrypt/write in the dragon language. The draconic language is the language of the dragons, it exists many variants, one of these has been popularized in the Skyrim video game.",
     "questions": [
         {
-            "answer": "The language of the dragons uses an alphabet of 36 symbols. These characters allow to code the letters of the Latin alphabet (A-Z) but also some combinations such as AA, AH, EI, EY, II, IR, OO. Some symbols like , normally the equivalent of C are not used in any word known in draconic language. Encryption uses a substitution of letters and / or letter pair by draconic symbols. Example: DCODE is coded  ",
+            "answer": "The language of the dragons uses an alphabet of 36 symbols. These characters allow to code the letters of the Latin alphabet (A-Z) but also some combinations such as AA, AH, EI, EY, II, IR, OO. Some symbols like , normally the equivalent of C are not used in any word known in draconic language. Encryption uses a substitution of letters and / or letter pair by draconic symbols. Example: DCODE is coded",
             "question": "How to encrypt using Draconic language cipher?"
         },
         {
@@ -89,7 +89,7 @@
             "question": "How to decrypt draconic language cipher?"
         },
         {
-            "answer": "The ciphered message is constituted of symbols made of lines and dots, potentially representing claws made by dragons. The draconic appears in the fantastic universe such as D&D: dungeons and dragons. ",
+            "answer": "The ciphered message is constituted of symbols made of lines and dots, potentially representing claws made by dragons. The draconic appears in the fantastic universe such as D&D: dungeons and dragons.",
             "question": "How to recognize Draconic ciphertext?"
         }
     ],

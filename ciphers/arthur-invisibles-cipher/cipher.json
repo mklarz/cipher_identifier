@@ -58,18 +58,18 @@
         ],
         "charset": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     },
-    "description": "",
+    "description": "Tool to decrypt/encrypt with the alphabet used in the book and animated movie from Luc Besson: Arthur and the Invisibles (called Minimoys in many countries).",
     "questions": [
         {
-            "answer": "Minimoys alphabet encryption is based on a substitution of letters by a Minimoy symbol. Each of the 26 letters of the English/latin alphabet ABCDEFGHIJKLMNOPQRSTUVWXYZ is associated with a Minimoys alphabet symbol, and the encryption consists of replacing/substituting each letter by its corresponding draw/glyph. Example: DCODE is written  ",
+            "answer": "Minimoys alphabet encryption is based on a substitution of letters by a Minimoy symbol. Each of the 26 letters of the English/latin alphabet ABCDEFGHIJKLMNOPQRSTUVWXYZ is associated with a Minimoys alphabet symbol, and the encryption consists of replacing/substituting each letter by its corresponding draw/glyph. Example: DCODE is written",
             "question": "How to encrypt using Minimoys alphabet cipher?"
         },
         {
-            "answer": "Minimoys decryption consists in replacing each Minimoys symbol with the corresponding letter in the Latin alphabet. Example:  is decoded as ARTHUR. ",
+            "answer": "Minimoys decryption consists in replacing each Minimoys symbol with the corresponding letter in the Latin alphabet. Example:  is decoded as ARTHUR.",
             "question": "How to decrypt Minimoys alphabet cipher?"
         },
         {
-            "answer": "The Minimoys symbols are rather made up of rounded shapes based on circles or spirals, sometimes having small circles similar to eyes, snails or crop circles. All references to Luc Besson, or to its book/movie Arthur and the Invisibles (Arthur et les Minimoys en Fran\u00e7ais) are clues. ",
+            "answer": "The Minimoys symbols are rather made up of rounded shapes based on circles or spirals, sometimes having small circles similar to eyes, snails or crop circles. All references to Luc Besson, or to its book/movie Arthur and the Invisibles (Arthur et les Minimoys en Fran\u00e7ais) are clues.",
             "question": "How to recognize a Minimoys ciphertext?"
         },
         {

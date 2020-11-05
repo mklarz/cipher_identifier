@@ -106,18 +106,18 @@
         ],
         "charset": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn"
     },
-    "description": "International Maritime/Navy signals code is a code substituting flags to letters.",
+    "description": "Tool to decrypt/encrypt with flags automatically. International Maritime/Navy signals code is a code substituting flags to letters.",
     "questions": [
         {
-            "answer": "The International Code of Maritime Signals uses flags for communication purposes. It can be used as a mono-alphabetical substitution cipher, each nautical flag represents a letter of the alphabet. ABCDEFGHIJKLMNOPQRSTUVWXYZ Example: 'FLAG' is coded  ",
+            "answer": "The International Code of Maritime Signals uses flags for communication purposes. It can be used as a mono-alphabetical substitution cipher, each nautical flag represents a letter of the alphabet. ABCDEFGHIJKLMNOPQRSTUVWXYZ Example: 'FLAG' is coded",
             "question": "How to encrypt using Navy Signals cipher?"
         },
         {
-            "answer": "The Decryption of Maritime Signals flags is a substitution between a flag and a letter except for 4 flags:  which are used to repeat the previous one. Example:  is translated DCODE. ",
+            "answer": "The Decryption of Maritime Signals flags is a substitution between a flag and a letter except for 4 flags:  which are used to repeat the previous one. Example:  is translated DCODE.",
             "question": "How to decrypt Maritime Signals cipher?"
         },
         {
-            "answer": "The ciphered message is made of flags (squared) in basic colors: blue, white, yellow, red, black (no green and no compound colors) offering a large contrast. Flags used in navy, do not necessarily mean a distress signal, they can handle a radio problem and help ship navigation. All references to the navy, naval forces (Royal Navy, US Navy etc.) and ships in general are clues. ",
+            "answer": "The ciphered message is made of flags (squared) in basic colors: blue, white, yellow, red, black (no green and no compound colors) offering a large contrast. Flags used in navy, do not necessarily mean a distress signal, they can handle a radio problem and help ship navigation. All references to the navy, naval forces (Royal Navy, US Navy etc.) and ships in general are clues.",
             "question": "How to recognize Maritime Flag ciphertext?"
         },
         {
@@ -125,7 +125,7 @@
             "question": "What are the variants of the Maritime alphabet?"
         },
         {
-            "answer": "The French reference book is available here (link) ",
+            "answer": "The French reference book is available here (link)",
             "question": "What is the reference book for Maritime Signals?"
         }
     ],

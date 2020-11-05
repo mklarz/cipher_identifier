@@ -58,22 +58,22 @@
         ],
         "charset": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     },
-    "description": "The Author is the name given to one of the uncles of Dipper and Mabel Pines.",
+    "description": "Tool to decode / encode with the cipher used by The Author of the journal from Gravity Falls. The Author is the name given to one of the uncles of Dipper and Mabel Pines.",
     "questions": [
         {
-            "answer": "The Author in Gravity Falls has his own alphabet with 26 symbols, one for each letter from the Latin alphabet. To encrypt a message with The Author cipher is a replacement of each letter with the corresponding symbol. LetterSymbolLetterSymbolABCDEFGHIJKLMNOPQRSTUVWXYZ Example: GRAVITY is written  ",
+            "answer": "The Author in Gravity Falls has his own alphabet with 26 symbols, one for each letter from the Latin alphabet. To encrypt a message with The Author cipher is a replacement of each letter with the corresponding symbol. LetterSymbolLetterSymbolABCDEFGHIJKLMNOPQRSTUVWXYZ Example: GRAVITY is written",
             "question": "How to encrypt using The Author cipher?"
         },
         {
-            "answer": "The Author cipher (from Gravity Falls) has its own alphabet of 26 symbols and their correspondance with the classic letters of the Latin alphabet. The Author decryption consists in replacing these symbols to get the original plain message. Example:  is translated JOURNAL ",
+            "answer": "The Author cipher (from Gravity Falls) has its own alphabet of 26 symbols and their correspondance with the classic letters of the Latin alphabet. The Author decryption consists in replacing these symbols to get the original plain message. Example:  is translated JOURNAL",
             "question": "How to decrypt The Author cipher?"
         },
         {
-            "answer": "The symbols used by The Author are similar to the hieroglyphs and to others codes used in Gravity Falls. ",
+            "answer": "The symbols used by The Author are similar to the hieroglyphs and to others codes used in Gravity Falls.",
             "question": "How to recognize a The Author ciphertext?"
         },
         {
-            "answer": "The Author is revealed in the second part of Season 2 of Gravity Falls. The author is Ford Pines, the twin brother of Stan Pines he lost sight a long time ago because he disappeared into another dimension, but his research was recorded in a series of journals. Other Gravity Falls info here (link) ",
+            "answer": "The Author is revealed in the second part of Season 2 of Gravity Falls. The author is Ford Pines, the twin brother of Stan Pines he lost sight a long time ago because he disappeared into another dimension, but his research was recorded in a series of journals. Other Gravity Falls info here (link)",
             "question": "Who is The Author? (Spoiler Alert)"
         }
     ],

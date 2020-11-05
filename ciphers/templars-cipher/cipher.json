@@ -56,18 +56,18 @@
         ],
         "charset": "ABCDEFGHIKLMNOPQRSTUVWXYZ"
     },
-    "description": "Knights Templars Ciphers is a substitution code replacing letters by symbols from the Maltese Cross, icon of Order of the Temple.",
+    "description": "Tool to decrypt/encrypt as a Knight Templar. Knights Templars Ciphers is a substitution code replacing letters by symbols from the Maltese Cross, icon of Order of the Temple.",
     "questions": [
         {
-            "answer": "Encryption uses 25 symbols to represent the letters of the alphabet (The letter J is missing and replaced by a I). The symbols used by the templar alphabet are pieces of the Maltese Cross. Example: ASSASSIN is written   Some sources have the letters L and K swapped. ",
+            "answer": "Encryption uses 25 symbols to represent the letters of the alphabet (The letter J is missing and replaced by a I). The symbols used by the templar alphabet are pieces of the Maltese Cross. Example: ASSASSIN is written   Some sources have the letters L and K swapped.",
             "question": "How to encrypt using Knights Templar cipher?"
         },
         {
-            "answer": "Templar decryption requires converting each symbol to their corresponding letter. Example:  is decrypted TEMPLE Some sources have the letters L and K swapped. ",
+            "answer": "Templar decryption requires converting each symbol to their corresponding letter. Example:  is decrypted TEMPLE Some sources have the letters L and K swapped.",
             "question": "How to decrypt using Knights Templar cipher?"
         },
         {
-            "answer": "The ciphered message is made from symbols with angles, triangles, with at most one dot per symbol. The message has at most 25 distinct characters. Any reference to the Knights Templars or Solomon's Militia (with a reputation of killers/assassins) is a clue. ",
+            "answer": "The ciphered message is made from symbols with angles, triangles, with at most one dot per symbol. The message has at most 25 distinct characters. Any reference to the Knights Templars or Solomon's Militia (with a reputation of killers/assassins) is a clue.",
             "question": "How to recognize Templars ciphertext?"
         },
         {
@@ -75,7 +75,7 @@
             "question": "What are the variants of the Templars cipher?"
         },
         {
-            "answer": "The letter J did not exist when encryption was invented, it was a graphic variant of the letter I, and the J only appeared around the 16th century. ",
+            "answer": "The letter J did not exist when encryption was invented, it was a graphic variant of the letter I, and the J only appeared around the 16th century.",
             "question": "Why is the J letter missing?"
         },
         {

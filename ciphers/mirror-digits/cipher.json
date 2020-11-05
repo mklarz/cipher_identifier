@@ -46,18 +46,18 @@
         ],
         "charset": "0123456789ABCDEFGHIJ"
     },
-    "description": "Mirror digits are symbols formed from digits and their vertical symmetry (as seen in a mirror).",
+    "description": "Tool to convert the symbols of the mirror digits. Mirror digits are symbols formed from digits and their vertical symmetry (as seen in a mirror).",
     "questions": [
         {
-            "answer": "Mirror figures are a deformation of Arabic numerals, but duplicated by vertical axial symmetry, hence the mirror effect. Example: 0 becomes  and looks like the infinite symbol Example: 1 becomes  and looks like an up arrow Digits may be transformed into symbols via a right or left symmetry Example: 2 becomes  or  ",
+            "answer": "Mirror figures are a deformation of Arabic numerals, but duplicated by vertical axial symmetry, hence the mirror effect. Example: 0 becomes  and looks like the infinite symbol Example: 1 becomes  and looks like an up arrow Digits may be transformed into symbols via a right or left symmetry Example: 2 becomes  or",
             "question": "How to encrypt using Mirror Digits cipher?"
         },
         {
-            "answer": "Reading the mirror digits can be done by hiding half of the symbol (sometimes the left part, sometimes the right part), and thus find the original figure. Otherwise, replace each symbol with its number. ",
+            "answer": "Reading the mirror digits can be done by hiding half of the symbol (sometimes the left part, sometimes the right part), and thus find the original figure. Otherwise, replace each symbol with its number.",
             "question": "How to decrypt Mirror Digits cipher?"
         },
         {
-            "answer": "Symbols are usually associated with a riddle or puzzle of the type, complete the following series: Example: ... ? Example: ... ? Some people instantly recognize the digits, for others it's more complicated... Symbols are associated to drawings : Infinite, Double OChainUp arrowLetter M2 ducks, phoneHeartMouth, Kiss4-leaf cloverTree, ArrowBridge, Fence, ChairCupAppleGlassesCherriesPi, CrossTriangle4 Balls2 BallsScisors, NodeHeart ",
+            "answer": "Symbols are usually associated with a riddle or puzzle of the type, complete the following series: Example: ... ? Example: ... ? Some people instantly recognize the digits, for others it's more complicated... Symbols are associated to drawings : Infinite, Double OChainUp arrowLetter M2 ducks, phoneHeartMouth, Kiss4-leaf cloverTree, ArrowBridge, Fence, ChairCupAppleGlassesCherriesPi, CrossTriangle4 Balls2 BallsScisors, NodeHeart",
             "question": "How to recognize Mirror Digits?"
         }
     ],

@@ -58,7 +58,7 @@
         ],
         "charset": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     },
-    "description": "Pigpen cipher (also called masonic cipher or Freemason's cipher) uses a substitution alphabet made of grid parts and dots.",
+    "description": "Tool to decrypt/encrypt using masonic cipher. Pigpen cipher (also called masonic cipher or Freemason's cipher) uses a substitution alphabet made of grid parts and dots.",
     "questions": [
         {
             "answer": "Encryption uses 26 symbols to represent each letter of the alphabet by mono-alphabetical substitution. Digits do not have symbols. Example: DCODE is encrypted  Symbols are created using a 3x3 grid, crosses and dots. Multiple variants exist for the creation of the alphabet and each changes the association of symbols and letters.",
@@ -69,7 +69,7 @@
             "question": "How to decrypt using PigPen cipher?"
         },
         {
-            "answer": "The ciphered message is made from symbols with right angles which sometime has a dot (1 symbol out of 2 has a dot). The message has a maximum of 26 distinct characters. The presence of pigs, pens, gate or farm are clues. The reference to Charles M. Schulz's comic book Peanuts reminds us that one of his characters is called Pigpen. ",
+            "answer": "The ciphered message is made from symbols with right angles which sometime has a dot (1 symbol out of 2 has a dot). The message has a maximum of 26 distinct characters. The presence of pigs, pens, gate or farm are clues. The reference to Charles M. Schulz's comic book Peanuts reminds us that one of his characters is called Pigpen.",
             "question": "How to recognize PigPen ciphertext?"
         },
         {
@@ -77,7 +77,7 @@
             "question": "What are the variants of the Freemason's PigPen cipher?"
         },
         {
-            "answer": "Used by the Freemasons, this encryption allowed a written correspondence relatively difficult to decipher. ",
+            "answer": "Used by the Freemasons, this encryption allowed a written correspondence relatively difficult to decipher.",
             "question": "Why was Pig Pen cipher created ?"
         },
         {

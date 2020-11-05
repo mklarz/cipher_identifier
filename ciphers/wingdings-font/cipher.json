@@ -452,18 +452,18 @@
         ],
         "charset": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\u0080\u0081\u0082\u0083\u0084\u0085\u0086\u0087\u0088\u0089\u008a\u008b\u008c\u008d\u008e\u008f\u0090\u0091\u0092\u0093\u0094\u0095\u0096\u0097\u0098\u0099\u009a\u009b\u009c\u009d\u009e\u009f\u00a0\u00a1\u00a2\u00a3\u00a4\u00a5\u00a6\u00a7\u00a8\u00a9\u00aa\u00ab\u00ac\u00ad\u00ae\u00af\u00b0\u00b1\u00b2\u00b3\u00b4\u00b5\u00b6\u00b7\u00b8\u00b9\u00ba\u00bb\u00bc\u00bd\u00be\u00bf\u00c0\u00c1\u00c2\u00c3\u00c4\u00c5\u00c6\u00c7\u00c8\u00c9\u00ca\u00cb\u00cc\u00cd\u00ce\u00cf\u00d0\u00d1\u00d2\u00d3\u00d4\u00d5\u00d6\u00d7\u00d8\u00d9\u00da\u00db\u00dc\u00dd\u00de\u00df\u00e0\u00e1\u00e2\u00e3\u00e4\u00e5\u00e6\u00e7\u00e8\u00e9\u00ea\u00eb\u00ec\u00ed\u00ee\u00ef\u00f0\u00f1\u00f2\u00f3\u00f4\u00f5\u00f6\u00f7\u00f8\u00f9\u00fa\u00fb\u00fc\u00fd\u00fe\u00ff"
     },
-    "description": "Wingdings is a character font with a set of pictograms or dingbats used on the Windows operating system.",
+    "description": "Tool to decrypt/encrypt with Wingdings. Wingdings is a character font with a set of pictograms or dingbats used on the Windows operating system.",
     "questions": [
         {
-            "answer": "Wingdings is the name given to a typographic font owned by Microsoft, which is installed by default on Windows operating systems. It contains, instead of the classic characters of the Latin alphabet or the ASCII code, a series of about 200 symbols/dingbats. ",
+            "answer": "Wingdings is the name given to a typographic font owned by Microsoft, which is installed by default on Windows operating systems. It contains, instead of the classic characters of the Latin alphabet or the ASCII code, a series of about 200 symbols/dingbats.",
             "question": "What is Wingdings? (Definition)"
         },
         {
-            "answer": "Conversion uses the substitution table from the Wingdings font. Each letter/character (ascii code) is replaced by a symbol according to a correspondance alphabet (see below). Example: DCODE is written  (images) or \ud83d\udc4e\ud83d\udc4d\ud83c\udff3\ud83d\udc4e\u261c (Unicode) ",
+            "answer": "Conversion uses the substitution table from the Wingdings font. Each letter/character (ascii code) is replaced by a symbol according to a correspondance alphabet (see below). Example: DCODE is written  (images) or \ud83d\udc4e\ud83d\udc4d\ud83c\udff3\ud83d\udc4e\u261c (Unicode)",
             "question": "How to convert/write in Wingdings ?"
         },
         {
-            "answer": "Translation into English requires the Wingdings font, each symbol is replaced by the corresponding letter. Example: The 3 wing dings characters  or \ud83d\udd48\ud83d\udd90\u2620 corresponds to the 3 letters W,I,N in English Do not confuse Wingdings with other symbol fonts like Webdings or Symbol font. ",
+            "answer": "Translation into English requires the Wingdings font, each symbol is replaced by the corresponding letter. Example: The 3 wing dings characters  or \ud83d\udd48\ud83d\udd90\u2620 corresponds to the 3 letters W,I,N in English Do not confuse Wingdings with other symbol fonts like Webdings or Symbol font.",
             "question": "How to translate Wingdings?"
         },
         {
@@ -471,11 +471,11 @@
             "question": "What is the correspondence of Wingdings symbols?"
         },
         {
-            "answer": "From version 7 on Unicode, a majority of Wingdings pictograms including geometric symbols, arrows, ornaments, etc. Have been added to some Unicode blocks, for example in code series E00x to E0Ax. There remain some symbols whose correspondence is not clear. ",
+            "answer": "From version 7 on Unicode, a majority of Wingdings pictograms including geometric symbols, arrows, ornaments, etc. Have been added to some Unicode blocks, for example in code series E00x to E0Ax. There remain some symbols whose correspondence is not clear.",
             "question": "Where to find Wingdings symbols into Unicode?"
         },
         {
-            "answer": "After the attacks of September 11, 2001, conspirators noticed that the dingbats corresponding to Q33NY in the Wingdings police were respectively 'airplane, building, building, skull, Jewish star'. Q33 would be the name of the plane and NY would be NewYork. This association is pure coincidence, and the symbols have since been modified by Microsoft to prevent the spread of fake news. ",
+            "answer": "After the attacks of September 11, 2001, conspirators noticed that the dingbats corresponding to Q33NY in the Wingdings police were respectively 'airplane, building, building, skull, Jewish star'. Q33 would be the name of the plane and NY would be NewYork. This association is pure coincidence, and the symbols have since been modified by Microsoft to prevent the spread of fake news.",
             "question": "What is the Q33NY hoax?"
         }
     ],

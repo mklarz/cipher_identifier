@@ -82,18 +82,18 @@
         ],
         "charset": "-.0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     },
-    "description": "Sheikah is an alphabet that appear in the video game Zelda - Breath of the Wild.",
+    "description": "Tool for decrypt/encrypt the Sheikah language. Sheikah is an alphabet that appear in the video game Zelda - Breath of the Wild.",
     "questions": [
         {
-            "answer": "The Sheikah script is a classical substitution of alphanumeric characters by Sheikah hieroglyphic symbols. The Sheikah alphabet contains the 26 letters of the latin alphabet, the 10 digits, the character - (dash) and the character . (dot/point/full stop). It is possible to space the words as the   (space) character would. Example: ZELDA is written  The digits/numbers are represented on a solid background while the letters are on an empty background Example: 123 is written  ",
+            "answer": "The Sheikah script is a classical substitution of alphanumeric characters by Sheikah hieroglyphic symbols. The Sheikah alphabet contains the 26 letters of the latin alphabet, the 10 digits, the character - (dash) and the character . (dot/point/full stop). It is possible to space the words as the   (space) character would. Example: ZELDA is written  The digits/numbers are represented on a solid background while the letters are on an empty background Example: 123 is written",
             "question": "How to write in Sheikah ?"
         },
         {
-            "answer": "The decryption of the Sheikah language consists in replacing each of the Sheikah symbols with the corresponding character (letter or number). Example:  is translated SHEIKAH. ",
+            "answer": "The decryption of the Sheikah language consists in replacing each of the Sheikah symbols with the corresponding character (letter or number). Example:  is translated SHEIKAH.",
             "question": "How to translate Sheikah language?"
         },
         {
-            "answer": "The symbols have a squared appearance and are formed by vertical or horizontal lines that can join, sometimes dots appear. The symbols are present in the videogame Breath of The Wild. ",
+            "answer": "The symbols have a squared appearance and are formed by vertical or horizontal lines that can join, sometimes dots appear. The symbols are present in the videogame Breath of The Wild.",
             "question": "How to recognize Sheikah symbols?"
         },
         {

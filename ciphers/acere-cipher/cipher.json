@@ -124,22 +124,22 @@
         ],
         "charset": "0123456ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
     },
-    "description": "Ac\u00e9r\u00e9 is a french cipher whose principle is to associate the letter A to the music note R\u00e9 (french music notation)",
+    "description": "Tool to decrypt/encrypt with Ac\u00e9r\u00e9. Ac\u00e9r\u00e9 is a french cipher whose principle is to associate the letter A to the music note R\u00e9 (french music notation)",
     "questions": [
         {
-            "answer": "Ac\u00e9r\u00e9 (A is R\u00e9 in French) encryption uses a substitution between notes and letters starting with the letter A for the note R\u00e9 hence the name of the code. Since there are not enough notes, usually the eighth notes \u266a (quavers) are used for the first letters and then the demi notes \u25cf for the last letters. Example: A = R\u00e9, B = Mi, ..., G = Do, H = R\u00e9, ..., M = Si, N = Do, ... etc. Some variants allow to code digits starting from 0 = R\u00e9 = D. ",
+            "answer": "Ac\u00e9r\u00e9 (A is R\u00e9 in French) encryption uses a substitution between notes and letters starting with the letter A for the note R\u00e9 hence the name of the code. Since there are not enough notes, usually the eighth notes \u266a (quavers) are used for the first letters and then the demi notes \u25cf for the last letters. Example: A = R\u00e9, B = Mi, ..., G = Do, H = R\u00e9, ..., M = Si, N = Do, ... etc. Some variants allow to code digits starting from 0 = R\u00e9 = D.",
             "question": "How to encrypt using Ac\u00e9r\u00e9 cipher?"
         },
         {
-            "answer": "Ac\u00e9r\u00e9 decryption requires knowing basic music theory/solfeggio like the type of music notes used before substitution (half notes, quarter notes, eighth notes). The remaining task is a replacement with the right letter. ",
+            "answer": "Ac\u00e9r\u00e9 decryption requires knowing basic music theory/solfeggio like the type of music notes used before substitution (half notes, quarter notes, eighth notes). The remaining task is a replacement with the right letter.",
             "question": "How to decrypt Ac\u00e9r\u00e9 cipher?"
         },
         {
-            "answer": "The message is made up of music notes, the fact that the LA corresponds to the E should make it statistically more frequent than the other notes. ",
+            "answer": "The message is made up of music notes, the fact that the LA corresponds to the E should make it statistically more frequent than the other notes.",
             "question": "How to recognize Ac\u00e9r\u00e9 ciphertext?"
         },
         {
-            "answer": "It is possible to invert the kind of notes (half notes, quarter notes, eight notes). Digits can be represented by half notes or full notes. ",
+            "answer": "It is possible to invert the kind of notes (half notes, quarter notes, eight notes). Digits can be represented by half notes or full notes.",
             "question": "What are the variants of the Ac\u00e9r\u00e9 cipher?"
         }
     ],
