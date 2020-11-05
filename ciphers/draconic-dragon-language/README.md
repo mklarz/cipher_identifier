@@ -11,12 +11,12 @@ Tool to decrypt/write in the dragon language. The draconic language is the langu
 
 ### Questions
 
-### How to encrypt using Draconic language cipher?
+#### How to encrypt using Draconic language cipher?
 The language of the dragons uses an alphabet of 36 symbols. These characters allow to code the letters of the Latin alphabet (A-Z) but also some combinations such as AA, AH, EI, EY, II, IR, OO. Some symbols like , normally the equivalent of C are not used in any word known in draconic language. Encryption uses a substitution of letters and / or letter pair by draconic symbols. Example: DCODE is coded
 
-### How to decrypt draconic language cipher?
+#### How to decrypt draconic language cipher?
 Decryption can be done by replacing each draconic symbol by its corresponding letter (or couple) in the latin alphabet. Example:  is decrypted as DRAGON
 
-### How to recognize Draconic ciphertext?
+#### How to recognize Draconic ciphertext?
 The ciphered message is constituted of symbols made of lines and dots, potentially representing claws made by dragons. The draconic appears in the fantastic universe such as D&D: dungeons and dragons.
 

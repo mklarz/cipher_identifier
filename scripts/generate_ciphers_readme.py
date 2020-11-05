@@ -25,7 +25,7 @@ for cipher in CIPHERS:
     md_text += "### Questions\n\n"
 
     for item in info["questions"]:
-        md_text += "### {}\n".format(item["question"])
+        md_text += "#### {}\n".format(item["question"])
         md_text += "{}\n\n".format(item["answer"])
 
     with open("{}/README.md".format(cipher_path), "w") as f:
