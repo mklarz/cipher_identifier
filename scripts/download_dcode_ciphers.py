@@ -1,19 +1,18 @@
 #!/usr/bin/python
 import argparse
+import json
 import os
 import pathlib
 import re
-import json
 
 import cv2
 import numpy as np
 import requests
 
-
 BASE_PATH = "{}/ciphers".format(pathlib.Path(__file__).resolve().parents[1].absolute())
 BASE_URL = "https://www.dcode.fr"
 HOME_MESSAGE = "dCode</a> offers tools to win for sure, for example the <"
-REGEX_REMOVE_HTML_TAGS = re.compile('<.*?>')
+REGEX_REMOVE_HTML_TAGS = re.compile("<.*?>")
 
 
 def crop_image(img):
@@ -47,11 +46,7 @@ def image_sizes_are_identical(images):
 def download_cipher_images(cipher, redownload=False):
     cipher_base_path = "{}/{}".format(BASE_PATH, cipher)
 
-    cipher_charset_information = {
-        "ascii_codes": [],
-        "characters": [],
-        "charset": None,
-    }
+    cipher_charset_information = {"ascii_codes": [], "characters": [], "charset": None}
 
     # Check if cipher exists
     if not redownload and os.path.exists(cipher_base_path):
@@ -74,7 +69,7 @@ def download_cipher_images(cipher, redownload=False):
     # Check if the cipher is valid
     if HOME_MESSAGE in content:
         print("[ERROR] Could not find a URL for cipher '{}'".format(cipher))
-        print("Tried URL:", url)
+        print("Tried URL:", cipher_url)
         exit(1)
 
     # Get a list of images
@@ -96,23 +91,33 @@ def download_cipher_images(cipher, redownload=False):
     chars = re.findall(r"\((.*?)\)", match)
 
     # Should ideally use BeautifulSoup
-    cipher_description = re.search(r'<meta name="description" content="(.*?)" />', content).group(1).strip()
+    cipher_description = (
+        re.search(r'<meta name="description" content="(.*?)" />', content)
+        .group(1)
+        .strip()
+    )
 
-    cipher_tags = re.search(r'<meta name="keywords" content="(.*?)" />', content).group(1).strip().split(",")
+    cipher_tags = (
+        re.search(r'<meta name="keywords" content="(.*?)" />', content)
+        .group(1)
+        .strip()
+        .split(",")
+    )
     cipher_title = re.search(r'id="title">(.*?)</h1>', content).group(1).strip()
 
     # Get the questions and answers
     raw_questions = re.findall(r'<h3 id="(.*?)" itemprop="name">(.*?)</h3>', content)
     questions = [raw_question[1].strip() for raw_question in raw_questions]
-    raw_answers = re.findall(r'<div itemprop="text"><p class="def">(.*?)</div>', content)
+    raw_answers = re.findall(
+        r'<div itemprop="text"><p class="def">(.*?)</div>', content
+    )
     mapped_questions = []
     for index, raw_answer in enumerate(raw_answers):
         # Remove the HTML
-        answer = re.sub(REGEX_REMOVE_HTML_TAGS, '', raw_answer)
-        mapped_questions.append({
-            "question": questions[index].strip(),
-            "answer": answer.strip(),
-        })
+        answer = re.sub(REGEX_REMOVE_HTML_TAGS, "", raw_answer)
+        mapped_questions.append(
+            {"question": questions[index].strip(), "answer": answer.strip()}
+        )
 
     # Create directory if it doesn't exist
     os.makedirs(cipher_images_path, exist_ok=True)
@@ -158,7 +163,9 @@ def download_cipher_images(cipher, redownload=False):
         raw_images[image_path] = r.content
         images_downloaded.add(i)
 
-    cipher_charset_information["charset"] = "".join(cipher_charset_information["characters"])
+    cipher_charset_information["charset"] = "".join(
+        cipher_charset_information["characters"]
+    )
 
     images = {}
     # Read the images into CV2 objects

@@ -1,11 +1,10 @@
 #!/usr/bin/python
 import glob
-import os
 import json
+import os
 import pathlib
 import re
 import urllib.parse
-
 
 BASE_PATH = pathlib.Path(__file__).resolve().parents[1].absolute()
 CIPHERS_PATH = "{}/ciphers".format(BASE_PATH)

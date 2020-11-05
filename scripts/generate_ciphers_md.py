@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import glob
-import os
 import json
+import os
 import pathlib
 import re
 import urllib.parse

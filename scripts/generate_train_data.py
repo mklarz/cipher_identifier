@@ -27,9 +27,7 @@ CIPHERS_PATH = "{}/ciphers".format(BASE_PATH)
 CIPHERS = sorted(next(os.walk(CIPHERS_PATH))[1])
 
 # TODO: add additional sentences that should be used for each cipher
-SENTENCES = [
-    "The quick brown fox jumps over the lazy dog",
-]
+SENTENCES = ["The quick brown fox jumps over the lazy dog"]
 
 CHARSET_LEETSPEAK_MAPPING = {
     "a": "4",
@@ -43,12 +41,7 @@ CHARSET_LEETSPEAK_MAPPING = {
 }
 
 # TODO: need to add more
-CHARSET_SYMBOL_MAPPING = {
-    "a": "@",
-    "e": "€",
-    "i": "!",
-    "s": "$",
-}
+CHARSET_SYMBOL_MAPPING = {"a": "@", "e": "€", "i": "!", "s": "$"}
 
 
 def transform_characters(sentence, sentence_charset, special_charset, chance=0.9):
@@ -76,21 +69,15 @@ def transform_sentence(sentence, sentence_charset, leetspeak=False, special=Fals
             sentence, sentence_charset, CHARSET_LEETSPEAK_MAPPING, chance=0.4
         )
         transformed_sentence = transform_characters(
-            transformed_sentence,
-            sentence_charset,
-            CHARSET_SYMBOL_MAPPING,
+            transformed_sentence, sentence_charset, CHARSET_SYMBOL_MAPPING
         )
     elif leetspeak:
         transformed_sentence = transform_characters(
-            sentence,
-            sentence_charset,
-            CHARSET_LEETSPEAK_MAPPING,
+            sentence, sentence_charset, CHARSET_LEETSPEAK_MAPPING
         )
     elif special:
         transformed_sentence = transform_characters(
-            sentence,
-            sentence_charset,
-            CHARSET_SYMBOL_MAPPING,
+            sentence, sentence_charset, CHARSET_SYMBOL_MAPPING
         )
 
     return (
@@ -224,12 +211,10 @@ def generate_sentences(
 def get_random_image_size(image_minmax_size):
     return (
         random.randint(
-            image_minmax_size[0][0],  # min width
-            image_minmax_size[1][0],  # max width
+            image_minmax_size[0][0], image_minmax_size[1][0]  # min width  # max width
         ),
         random.randint(
-            image_minmax_size[0][0],  # min height
-            image_minmax_size[1][0],  # max height
+            image_minmax_size[0][0], image_minmax_size[1][0]  # min height  # max height
         ),
     )
 
@@ -275,14 +260,8 @@ def generate_image(
     Find the width by summing the width of all the images (and padding)
     Find the height by finding the tallest image of the bunch
     """
-    padding = random.randint(
-        padding_min_max[0],
-        padding_min_max[1],
-    )
-    space_padding = random.randint(
-        space_padding_min_max[0],
-        space_padding_min_max[1],
-    )
+    padding = random.randint(padding_min_max[0], padding_min_max[1])
+    space_padding = random.randint(space_padding_min_max[0], space_padding_min_max[1])
 
     background_width = padding * 2
     background_height = 0
@@ -351,17 +330,11 @@ def place_images(images, image_minmax_size, background_color=(255, 255, 255)):
         # Resize the image/symbol randomly
         seed = random.randint(1, 6)
         width = img.size[0]
-        width += random.randint(
-            width - (width // seed),
-            width + (width // seed),
-        )
+        width += random.randint(width - (width // seed), width + (width // seed))
         # To change the 1:1 scale
         # seed = random.randint(1, 6)
         height = img.size[1]
-        height += random.randint(
-            height - (height // seed),
-            height + (height // seed),
-        )
+        height += random.randint(height - (height // seed), height + (height // seed))
         img = img.resize((width, height), Image.ANTIALIAS)
 
         # TODO: Rotate?
@@ -405,8 +378,7 @@ def generate_random_symbols(images, divider=6):
 
     # How many symbols should we use?
     symbol_count = random.randint(
-        (image_count // divider),
-        image_count - (image_count // divider),
+        (image_count // divider), image_count - (image_count // divider)
     )
     print("symbol_count={}".format(symbol_count), end=", ")
 
