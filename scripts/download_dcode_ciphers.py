@@ -97,10 +97,6 @@ def download_cipher_images(cipher, redownload=False):
 
     # Should ideally use BeautifulSoup
     cipher_description = re.search(r'<meta name="description" content="(.*?)" />', content).group(1).strip()
-    s = cipher_description.split(".")
-    if "Tool" in s[0] or "tool" in s[0]:
-        # Remove the first sentence
-        cipher_description = ".".join(s[1:]).strip()
 
     cipher_tags = re.search(r'<meta name="keywords" content="(.*?)" />', content).group(1).strip().split(",")
     cipher_title = re.search(r'id="title">(.*?)</h1>', content).group(1).strip()
@@ -114,8 +110,8 @@ def download_cipher_images(cipher, redownload=False):
         # Remove the HTML
         answer = re.sub(REGEX_REMOVE_HTML_TAGS, '', raw_answer)
         mapped_questions.append({
-            "question": questions[index],
-            "answer": answer,
+            "question": questions[index].strip(),
+            "answer": answer.strip(),
         })
 
     # Create directory if it doesn't exist
