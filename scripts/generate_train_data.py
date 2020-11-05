@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import argparse
 import collections
 import glob
 import json
@@ -401,7 +402,9 @@ def generate_symbol_mapping(images):
     for image in images:
         c = chr(int(os.path.basename(image.filename).replace(".png", "")))
         mapping[c] = image
-    return mapping
+
+    # Sort the mapping by character and return it
+    return collections.OrderedDict(sorted(mapping.items()))
 
 
 def generate_train_data(
@@ -415,8 +418,8 @@ def generate_train_data(
 
     # TODO: normalize/clean images for training
     images = [Image.open(path) for path in image_paths]
-    symbol_mapping = generate_symbol_mapping(images)
     image_count = len(images)
+    symbol_mapping = generate_symbol_mapping(images)
     print("Cipher image count:", image_count)
 
     charset = "".join(symbol_mapping.keys())
@@ -468,15 +471,59 @@ def generate_train_data(
         print("time_taken={}s".format(time.process_time() - start_time), end="]\n")
 
 
-# Load the british wordlist
-with open("{}/wordlists/languages/british-english-stripped".format(BASE_PATH)) as f:
+example_text = """Examples:
+# Generate training data with default parameters
+generate_train_data.py ancients-stargate-alphabet
+# Generate 1000 training data images
+generate_train_data.py -l 1000 ancients-stargate-alphabet
+# Specify which wordlist to use for generating sentences
+generate_train_data.py -w wordlist.txt ancients-stargate-alphabet"""
+
+parser = argparse.ArgumentParser(
+    prog="download_images",
+    description="Download cipher images from dcode.fr",
+    epilog=example_text,
+    formatter_class=argparse.RawDescriptionHelpFormatter,
+)
+parser.add_argument(
+    "cipher", help="the name of the cipher to generate training data for"
+)
+parser.add_argument(
+    "-l",
+    "--limit",
+    type=int,
+    default=10000,
+    help="how many training data images should be generated",
+)
+parser.add_argument(
+    "-w",
+    "--wordlist",
+    type=str,
+    default="{}/wordlists/languages/british-english-stripped".format(BASE_PATH),
+    help="specify the wordlist to use when generating sentences for images",
+)
+
+args = parser.parse_args()
+
+# Make sure the cipher exists
+cipher = args.cipher
+cipher_path = "{}/{}".format(CIPHERS_PATH, cipher)
+if not os.path.exists(cipher_path):
+    print("[ERROR] Cipher '{}' does not exist ({})".format(cipher, cipher_path))
+    exit(1)
+
+# Make sure the wordlist exists
+wordlist = args.wordlist
+if not os.path.exists(wordlist):
+    print("[ERROR] Wordlist does not exist: {}".format(wordlist))
+    exit(1)
+
+# Load the wordlist
+with open(wordlist) as f:
     wordlist = f.read().splitlines()
 
-# TODO: only generate based on sysargv input, might be spammy to generate for all ciphers
-# For 1k: python scripts/generate_train_data.py  1.39s user 0.52s system 133% cpu 1.432 total
-# For 50k: python scripts/generate_train_data.py  49.69s user 6.18s system 99% cpu 55.908 total
-print("Found {} ciphers".format(len(CIPHERS)))
-for cipher in CIPHERS:
-    print("Generating train images for cipher:", cipher)
-    generate_train_data(cipher, wordlist, limit=10000)
-    exit(0)
+
+limit = args.limit
+print("Generating {} training images for cipher:".format(limit), cipher)
+
+generate_train_data(cipher, wordlist, limit=limit)
