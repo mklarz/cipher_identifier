@@ -3,6 +3,8 @@ import pathlib
 import sys
 import time
 
+import cv2
+import numpy as np
 import tesserocr
 from PIL import Image
 from tesserocr import OEM, PSM, RIL, PyTessBaseAPI
@@ -29,6 +31,36 @@ CIPHER_LANGUAGES = sorted(
     ]
 )
 
+
+def preprocess_image(image_path, debug=False):
+    # TODO: need to add borders if they're missing, else we get 0% confidence because of no padding
+    image = cv2.imread(image_path)
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+    # Remove noise
+    gray = cv2.medianBlur(gray, 5)
+
+    # Thresholding
+    gray = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+
+    # Let's prepare for cropping the image to the text
+
+    # Reverse the color with thresholding
+    threshold = cv2.threshold(gray, 0, 255, cv2.THRESH_OTSU | cv2.THRESH_BINARY_INV)[1]
+
+    # Dilate
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (15, 3))
+    dilation = cv2.dilate(threshold, kernel, iterations=1)
+
+    # Find the contour of the text
+    contours = cv2.findContours(dilation, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)[0]
+    contour = contours[0]
+
+    # Crop the image to the contour and return it
+    x, y, w, h = cv2.boundingRect(contour)
+    return gray[y : y + h, x : x + w]
+
+
 """
 PSM:
 Page segmentation modes.
@@ -50,7 +82,10 @@ Page segmentation modes.
 """
 PSM_MODE = PSM.SINGLE_LINE
 
-image = Image.open(image_path)
+image = preprocess_image(image_path, debug=True)
+
+# Transform OpenCV image to a Pillow image for tesseract
+image = Image.fromarray(image)
 
 cipher_results = {}
 for cipher_language in CIPHER_LANGUAGES:
@@ -72,7 +107,7 @@ for cipher_language in CIPHER_LANGUAGES:
     }
 
     end = time.process_time() - start
-    print(", took {} seconds".format(end))
+    print(", took {} seconds".format(round(end, 4)))
 
 # Sort the by confidence
 cipher_results = {
