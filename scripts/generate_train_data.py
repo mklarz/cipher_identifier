@@ -389,11 +389,6 @@ def place_images(images, image_minmax_size, background_color=(255, 255, 255)):
     return background
 
 
-def generate_background_image(size, color):
-    # White background image
-    background = Image.new("RGB", size, (255, 255, 255))
-
-
 def get_symbol_characters(symbols):
     # Map the ASCII codes to characters
     symbol_characters = ""

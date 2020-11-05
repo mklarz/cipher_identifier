@@ -143,8 +143,6 @@ def generate_combined_image(
 
         is_last_row = (row_index + 1) == expected_row_count
         is_new_row = image_index != 1 and image_index % images_per_row == 0
-        is_last_image = image_index == image_count
-        is_last_image_of_row = image_index % images_per_row == 0
 
         # Add vertical grid line?
         if draw_grid and x != reset_x:
