@@ -1,12 +1,12 @@
-# dcode.fr cipher identifier
-WIP of a script that tries to identify symbol ciphers (for now) available on [dcode.fr](https://www.dcode.fr/) based on input.
+# cipher identifier
+WIP of a script that tries to identify symbol ciphers (for now) available on based on input.
 
 A compiled list of all of the image symbols can be found in [CIPHERS.md](CIPHERS.md).
 
 #### Install
 ```
-git clone https://github.com/corax/dcode_identifier.git`
-cd ./dcode_identifier
+git clone https://github.com/corax/cipher_identifier.git`
+cd ./cipher_identifier
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements/base.txt
