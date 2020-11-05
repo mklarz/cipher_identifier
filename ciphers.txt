@@ -1,3 +1,4 @@
+acere-cipher
 ancients-stargate-alphabet
 arthur-invisibles-cipher
 atlantean-language
@@ -8,6 +9,7 @@ braille-alphabet
 chinese-code
 daggers-alphabet
 dancing-men-cipher
+dorabella-cipher
 dotsies-writing
 draconic-dragon-language
 elder-futhark
@@ -15,6 +17,7 @@ enochian-language
 french-sign-language
 futurama-alien-alphabet
 gerudo-language
+goron-cipher
 gnommish-alphabet
 gravity-falls-author-cipher
 gravity-falls-bill-cipher
@@ -24,15 +27,18 @@ hylian-language-skyward-sword
 hylian-language-twilight-princess
 hymnos-alphabet
 iokharic-language
+inuktitut-language
 klingon-language
 lingua-ignota-code
 maritime-signals-code
 mary-stuart-code
 mayan-numbers
+mirror-digits
 music-sheet-cipher
 ogham-alphabet
 pigpen-cipher
 pokemon-unown-alphabet
+rosicrucian-cipher
 semaphore-flag
 semaphore-trousers-cipher
 sheikah-language

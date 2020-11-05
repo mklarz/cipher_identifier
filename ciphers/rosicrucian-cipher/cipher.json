@@ -1,0 +1,92 @@
+{
+    "charset_information": {
+        "ascii_codes": [
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+        ],
+        "characters": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+        ],
+        "charset": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    },
+    "description": "",
+    "questions": [
+        {
+            "answer": "The Rosicrucian encryption replaces each letter of the alphabet with a symbol (number by substitution) of which here is the correspondence table: LetterSymbolLetterSymbolLetterSymbolLetterSymbolABCDEFGHIJKLMNOPQRSTUVWXYZ Example: ROSE is translated  ",
+            "question": "How to encrypt using Rosy Cross cipher?"
+        },
+        {
+            "answer": "The Rosicrucian decryption is the reverse operation of encryption and replaces each symbol with a letter of the Latin alphabet (see table above) Example:  is translated CROSS ",
+            "question": "How to decrypt Rosy Cross cipher?"
+        },
+        {
+            "answer": "The message is made up of symbols which all have 2, 3 or 4 edges of a square with inside a point/dot positioned either to the right, or in the middle, or to the left of the square. The square is complete (4 edges) only for the letter N. Any reference to a secret order, to the character of Christian Rosenkreutz (CRC) or to Freemasonry are clues. ",
+            "question": "How to recognize a Rosicrucian ciphertext?"
+        },
+        {
+            "answer": "The pigpen cipher from the Freemasons has very similar symbols, similarly the Templar cipher is quite similar.",
+            "question": "What are the variants of the Rosicrucian cipher?"
+        }
+    ],
+    "tags": [
+        "rosicrucian",
+        "rosy",
+        "cross",
+        "pigpen",
+        "freemason",
+        "dot",
+        "christian",
+        "rosenkreutz",
+        "crc"
+    ],
+    "title": "Rosicrucian Cipher"
+}
