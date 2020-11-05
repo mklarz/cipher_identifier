@@ -1,0 +1,86 @@
+{
+    "charset_information": {
+        "ascii_codes": [
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+        ],
+        "characters": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+        ],
+        "charset": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    },
+    "description": "",
+    "questions": [
+        {
+            "answer": "The Gerudo language was invented for the Zelda series, it is a substitution of the 26 letters of the Latin alphabet by 26 new symbols of the Gerudo alphabet. Example: ZELDA is translated  In Zelda games, messages in Gerudo are usually transcribed from English messages ",
+            "question": "How to write/encrypt using Gerudo language?"
+        },
+        {
+            "answer": "The Gerudos symbols are replacements for the 26 Latin letters. The translation can be done via a correspondence table. Example:  is translated GERUDO. ",
+            "question": "How to translate/decrypt Gerudo messages?"
+        },
+        {
+            "answer": "The language of Gerudo is used by women warriors of the same name in the video game Zelda. Their people live near a desert and are ruled by a man Ganon/Ganondorf. Any reference to these elements is a clue. The symbols are quite vertical, very rounded with long curves resembling commas/lines drawn with a brush. Zelda's universe has many other languages like Sheikah, Goron or Hylian. ",
+            "question": "How to recognize a Gerudo ciphertext?"
+        }
+    ],
+    "tags": [
+        "gerudo",
+        "language",
+        "alphabet",
+        "zelda",
+        "women",
+        "ganon",
+        "ganondorf"
+    ],
+    "title": "Gerudo Language"
+}

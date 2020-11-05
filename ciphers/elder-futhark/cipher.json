@@ -1,0 +1,85 @@
+{
+    "charset_information": {
+        "ascii_codes": [
+            65,
+            66,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            87,
+            88,
+            89,
+            90
+        ],
+        "characters": [
+            "A",
+            "B",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "W",
+            "X",
+            "Y",
+            "Z"
+        ],
+        "charset": "ABDEFGHIJKLMNOPQRSTUWXYZ"
+    },
+    "description": "",
+    "questions": [
+        {
+            "answer": "The runic alphabet used in old futhark is composed of 24 characters, each with a possible transliteration with the Latin alphabet. To write in old futhark, to associate with each letter or sound of a message in French, his correspondence (or what is nearest) in old futhark according to the table:A\u16a8B\u16d2C/K/Q\u16b2D\u16deE\u16d6F\u16a0G\u16b7H\u16baI\u16c1J/Y\u16c3L\u16daM\u16d7N\u16beNG\u16ddO\u16dfP\u16c8R\u16b1S\u16cbT\u16cfTH\u16a6U\u16a2V/W\u16b9Y\u16c3Z\u16c9 ",
+            "question": "How to encrypt/write in Elder Futhark?"
+        },
+        {
+            "answer": "The decryption of old futhark begins with a substitution of runic characters into Latin characters to obtain an intelligible plain message. The plain message found may be a text written in some old language, whose translation into English will remain to be done. Example: \u16a0 for f, \u16a2 for u, \u16a6 for th, \u16a8 for a, \u16b1 for ' r ', etc. Example:  is read FUTHARK ",
+            "question": "How to decrypt some Elder Futhark runes?"
+        },
+        {
+            "answer": "The alphabet is composed of vertical or sloping lines, but never horizontal. A message can contain a maximum of 24 distinct characters. Most traces of the old futhark were found on runes, pieces of stones, pebbles on which were engraved runic characters. ",
+            "question": "How to recognize an Elder Futhark ciphertext?"
+        },
+        {
+            "answer": "The estimations indicates that this languages has been spoken from the second century to the eighth century AD. ",
+            "question": "When Elder Futhark have been invented ?"
+        }
+    ],
+    "tags": [
+        "futhark",
+        "elder",
+        "rune",
+        "runic",
+        "alphabet",
+        "germanic"
+    ],
+    "title": "Elder Futhark \u16a0\u16a2\u16a6\u16a8\u16b1\u16b2"
+}

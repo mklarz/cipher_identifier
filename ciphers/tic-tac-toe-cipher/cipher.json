@@ -1,0 +1,90 @@
+{
+    "charset_information": {
+        "ascii_codes": [
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+        ],
+        "characters": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+        ],
+        "charset": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    },
+    "description": "The Tic-Tac-Toe code is a grid cipher, using symbols from the famous game Tic-Tac-Toe (or noughts and crosses or Xs and Os)",
+    "questions": [
+        {
+            "answer": "The Tic-Tac-Toe code uses the 3x3 grid of the game of the same name (also known as OXO grid). The grid is composed of 2 vertical lines and 2 horizontal lines delimiting 9 distinct spaces, ie. the character # (sharp) but in bigger. In this grid are written the 26 letters of the alphabet, 3 by boxes, except for the last one that it contains only 2. Example: ABCDEFGHIJKLMNOPQRSTUVWXYZ Each letter is then symbolized by a symbol characterizing its location in the grid: 2 to 4 lines to indicate the position of the box and a point to indicate the position of the letter. Example: The letter A is the left letter in the upper left portion, its symbol is  Example: The letter E is the middle letter in the upper middle portion, its symbol is  Example: The letter I is the rightmost letter in the upper right portion, its symbol is  ",
+            "question": "How to encrypt using Tic-Tac-Toe cipher?"
+        },
+        {
+            "answer": "Decryption can be done visually via a drawing of the grid with paper and a pencil, replacing each symbol with the corresponding letter. Example:  is translated TICTACTOE ",
+            "question": "How to decrypt Tic-Tac-Toe cipher?"
+        },
+        {
+            "answer": "The symbols are very similar and must be reminiscent of the ridge grid, right angles, 2 to 4 perpendicular lines accompanied by a single point having 3 possible positions (left, center, right). The symbols look like the Pigpen cipher which is similar. ",
+            "question": "How to recognize a Tic-Tac-Toe ciphertext?"
+        }
+    ],
+    "tags": [
+        "tic",
+        "tac",
+        "toe",
+        "tictactoe",
+        "nought",
+        "cross",
+        "x",
+        "o",
+        "oxo",
+        "grid",
+        "dot"
+    ],
+    "title": "Tic-Tac-Toe Cipher"
+}

@@ -1,0 +1,112 @@
+{
+    "charset_information": {
+        "ascii_codes": [
+            32,
+            33,
+            36,
+            63,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            97,
+            99,
+            101,
+            107,
+            110,
+            111,
+            115,
+            116
+        ],
+        "characters": [
+            " ",
+            "!",
+            "$",
+            "?",
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z",
+            "a",
+            "c",
+            "e",
+            "k",
+            "n",
+            "o",
+            "s",
+            "t"
+        ],
+        "charset": " !$?ABCDEFGHIJKLMNOPQRSTUVWXYZaceknost"
+    },
+    "description": "",
+    "questions": [
+        {
+            "answer": "Aurebesh is an alphabet from the Star Wars Universe, whose name consists of the first 2 letters: Aurek and Besh. It appears in various films and series of the Star Wars saga and transcribes Basic, the most common language in the galaxy. ",
+            "question": "What is Aurebesh?"
+        },
+        {
+            "answer": "The Aurebesh alphabet comprises around forty signs and symbols, each with a name and a possible correspondence with the Latin / English alphabet:AurekABeshBCreshCCherekCHDornDEskEEnth\u00c6OnithEOFornFGrekGHerfHIskIJenthJKrillKKrenthKHLethLMernMNernNNenNGOskOOrenthOOPethPQekQReshRSenthSShenSHTrillTTheshTHUskUVevVWeskWXeshXYirtYZerekZ Example: STAR is written as  The currency symbol is  (with small bars similar to currencies like the dollar $ or the Euro \u20ac) ",
+            "question": "How to write in Aurebesh?"
+        },
+        {
+            "answer": "Aurebesh is a substitution of characters, decryption / translation individually replaces the symbols with the corresponding letter(s). Example:  is translated BASIC ",
+            "question": "How to decrypt Aurebesh cipher?"
+        },
+        {
+            "answer": "Aurebesh symbols are not very complex, sometimes angular, sometimes rounded and overall rather wide. All references to the Star Wars universe or the Galactic Basic language are clues. ",
+            "question": "How to recognize a Aurebesh alphabet?"
+        }
+    ],
+    "tags": [
+        "aurebesh",
+        "star",
+        "wars",
+        "galactic",
+        "basic"
+    ],
+    "title": "Aurebesh Alphabet"
+}

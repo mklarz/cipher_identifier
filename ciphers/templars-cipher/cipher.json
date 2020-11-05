@@ -1,0 +1,103 @@
+{
+    "charset_information": {
+        "ascii_codes": [
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+        ],
+        "characters": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+        ],
+        "charset": "ABCDEFGHIKLMNOPQRSTUVWXYZ"
+    },
+    "description": "Knights Templars Ciphers is a substitution code replacing letters by symbols from the Maltese Cross, icon of Order of the Temple.",
+    "questions": [
+        {
+            "answer": "Encryption uses 25 symbols to represent the letters of the alphabet (The letter J is missing and replaced by a I). The symbols used by the templar alphabet are pieces of the Maltese Cross. Example: ASSASSIN is written   Some sources have the letters L and K swapped. ",
+            "question": "How to encrypt using Knights Templar cipher?"
+        },
+        {
+            "answer": "Templar decryption requires converting each symbol to their corresponding letter. Example:  is decrypted TEMPLE Some sources have the letters L and K swapped. ",
+            "question": "How to decrypt using Knights Templar cipher?"
+        },
+        {
+            "answer": "The ciphered message is made from symbols with angles, triangles, with at most one dot per symbol. The message has at most 25 distinct characters. Any reference to the Knights Templars or Solomon's Militia (with a reputation of killers/assassins) is a clue. ",
+            "question": "How to recognize Templars ciphertext?"
+        },
+        {
+            "answer": "The Pig-Pen Cipher is similar",
+            "question": "What are the variants of the Templars cipher?"
+        },
+        {
+            "answer": "The letter J did not exist when encryption was invented, it was a graphic variant of the letter I, and the J only appeared around the 16th century. ",
+            "question": "Why is the J letter missing?"
+        },
+        {
+            "answer": "The cipher was created by the Templars, the name given to members of the Order of the Temple, a religious and military group from the Middle Ages.",
+            "question": "Who created the Templar Cipher?"
+        },
+        {
+            "answer": "12th century",
+            "question": "When Templars Cipher have been invented?"
+        }
+    ],
+    "tags": [
+        "templar",
+        "temple",
+        "triangle",
+        "malta",
+        "maltese",
+        "cross",
+        "order",
+        "knight",
+        "solomon",
+        "assassin"
+    ],
+    "title": "Templars Cipher"
+}

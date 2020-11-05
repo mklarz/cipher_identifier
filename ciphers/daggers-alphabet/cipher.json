@@ -1,0 +1,90 @@
+{
+    "charset_information": {
+        "ascii_codes": [
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+        ],
+        "characters": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+        ],
+        "charset": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    },
+    "description": "",
+    "questions": [
+        {
+            "answer": "The alphabet of daggers is made up of 26 symbols, each having an equivalent with the classical Latin alphabet. Writing with the alphabet of daggers then consists of replacing any letter in the message with the corresponding symbol. SECRET is written  ",
+            "question": "How to encrypt using Daggers' Alphabet cipher?"
+        },
+        {
+            "answer": "A message written in the alphabet of daggers is made up of groups of drawn daggers, each group corresponding to a letter of the Latin alphabet. Reading the alphabet of daggers then consists of replacing any group of daggers with the corresponding letter. Example:  is read MAGIC ",
+            "question": "How to decrypt Daggers' Alphabet cipher?"
+        },
+        {
+            "answer": "The message consists only of daggers, small swords resembling obeles. The daggers are grouped by 1, 2, 3, 4, 5 or 7. The daggers are represented either vertically, horizontally or diagonally. Daggers generally do not cross except the letters P and R. ",
+            "question": "How to recognize a Daggers' Alphabet ciphertext?"
+        },
+        {
+            "answer": "The alphabet is described in Aleister Crowley's book: The Vision and the Voice, published at the beginning of the 20th century and describing Enochian ethers from the 16th century.",
+            "question": "When Daggers' Alphabet have been invented ?"
+        }
+    ],
+    "tags": [
+        "dagger",
+        "alphabet",
+        "aleister",
+        "crowley",
+        "vision",
+        "voice",
+        "enochian"
+    ],
+    "title": "Daggers' Alphabet"
+}

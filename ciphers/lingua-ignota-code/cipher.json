@@ -1,0 +1,82 @@
+{
+    "charset_information": {
+        "ascii_codes": [
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            88,
+            89,
+            90
+        ],
+        "characters": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "X",
+            "Y",
+            "Z"
+        ],
+        "charset": "ABCDEFGHIKLMNOPQRSTUXYZ"
+    },
+    "description": "Lingua Ignota which means unknown language in Latin is an alphabet created by Hildegard of Bingen having 23 characters.",
+    "questions": [
+        {
+            "answer": "Encryption uses a correlation table between the letter and symbols in Lingua Ignota. This table is described by Hildegard of Bingen, church woman, abbess of Rupertsberg, in a book called Lingua Ignota per simplicem hominem Hildegardem prolata (which can be translated from latin by: unknown language imagined by a single person: Hildegarde). Example: To encrypt DCODE use  The Lingua Ignota has only 23 distinct symbols, there is no correspondence for the letters J, V and W! By convention, replace J with I, V with U and W with UU. Example: J = I =  ",
+            "question": "How to encrypt using Lingua Ignota cipher?"
+        },
+        {
+            "answer": "Decryption/Translation from Lingua Ignota  requires to substitute the symbols by their equivalent letter. Example:  is decrypted LINGUA. Since there are only 23 characters, it should not be forgotten that I may be J, that U may be V and that UU may be W. ",
+            "question": "How to decrypt Lingua Ignota cipher?"
+        },
+        {
+            "answer": "Hildegarde of Bingen (O.S.B. Order of Saint Benedict, also known as Saint Hildegard or Sibyl of the Rhine) created it in the 12th century in Germany. ",
+            "question": "When Lingua Ignota was invented?"
+        }
+    ],
+    "tags": [
+        "lingua",
+        "ignota",
+        "language",
+        "unknown",
+        "rupertsberg",
+        "hildegard",
+        "bingen",
+        "church",
+        "latin"
+    ],
+    "title": "Lingua Ignota"
+}

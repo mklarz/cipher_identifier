@@ -1,0 +1,84 @@
+{
+    "charset_information": {
+        "ascii_codes": [
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+        ],
+        "characters": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+        ],
+        "charset": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    },
+    "description": "Bill is a triangle-shaped character, an evil dream demon master of illusions.",
+    "questions": [
+        {
+            "answer": "Bill Cipher has his own alphabet of 26 symbols, each corresponding to a letter of the Latin alphabet. To encrypt a message with Bill Cipher is therefore to replace each letter with the corresponding symbol. Example: BILL is written  ",
+            "question": "How to encrypt using Bill Cipher cipher?"
+        },
+        {
+            "answer": "Bill Cipher uses an alphabet of 26 symbols corresponding to the classic letters of the Latin alphabet. Decryption is to replace these symbols to get the original plain message. Example:  is translated GRAVITY ",
+            "question": "How to decrypt Bill Cipher cipher?"
+        },
+        {
+            "answer": "The symbols used by Bill Cipher are similar to the hyeroglyphs. In Gravity Falls, Bill has a triangle shape, he has only one eye, wears a hat and a bow tie, he is sometimes likened to the eye of providence, its presence could be a clue. ",
+            "question": "How to recognize a Bill Cipher ciphertext?"
+        }
+    ],
+    "tags": [
+        "bill",
+        "cipher",
+        "gravity",
+        "fall",
+        "triangle"
+    ],
+    "title": "Gravity Falls Bill Cipher"
+}

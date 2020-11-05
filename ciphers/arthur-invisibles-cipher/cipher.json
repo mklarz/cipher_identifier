@@ -1,0 +1,91 @@
+{
+    "charset_information": {
+        "ascii_codes": [
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+        ],
+        "characters": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+        ],
+        "charset": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    },
+    "description": "",
+    "questions": [
+        {
+            "answer": "Minimoys alphabet encryption is based on a substitution of letters by a Minimoy symbol. Each of the 26 letters of the English/latin alphabet ABCDEFGHIJKLMNOPQRSTUVWXYZ is associated with a Minimoys alphabet symbol, and the encryption consists of replacing/substituting each letter by its corresponding draw/glyph. Example: DCODE is written  ",
+            "question": "How to encrypt using Minimoys alphabet cipher?"
+        },
+        {
+            "answer": "Minimoys decryption consists in replacing each Minimoys symbol with the corresponding letter in the Latin alphabet. Example:  is decoded as ARTHUR. ",
+            "question": "How to decrypt Minimoys alphabet cipher?"
+        },
+        {
+            "answer": "The Minimoys symbols are rather made up of rounded shapes based on circles or spirals, sometimes having small circles similar to eyes, snails or crop circles. All references to Luc Besson, or to its book/movie Arthur and the Invisibles (Arthur et les Minimoys en Fran\u00e7ais) are clues. ",
+            "question": "How to recognize a Minimoys ciphertext?"
+        },
+        {
+            "answer": "The Minimoys alphabet is described with 26 words and names of characters from Arthur's universe to remind the 26 letters of the alphabet: (French version, feel free to submit an English source) ArthurB\u00e9tam\u00e8checollierDi Vinci\u00e9p\u00e9efeuillegrand-p\u00e8rehorlogeimagejournalKoolomassailunettesMaltazardnoixorProsciuttoquatreroiSeleniatasseuniformevoiturewaouhxylophoneyoupi!zigzag",
+            "question": "How to learn the alphabet with Minimoys?"
+        }
+    ],
+    "tags": [
+        "arthur",
+        "minimoy",
+        "invisible",
+        "alphabet",
+        "luc",
+        "besson",
+        "book",
+        "movie"
+    ],
+    "title": "Arthur and the Invisibles Alphabet"
+}

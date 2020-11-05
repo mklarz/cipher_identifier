@@ -1,0 +1,89 @@
+{
+    "charset_information": {
+        "ascii_codes": [
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+        ],
+        "characters": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+        ],
+        "charset": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    },
+    "description": "The symbols used in Skyward Sword are drawings replacing the characters of the Latin alphabet.",
+    "questions": [
+        {
+            "answer": "Hylian is an invented language for the game world The Legend of Zelda. It is used in multiple games including Skyward Sword in the Hyrule world. Writing in Hylian is like writing normally, but replacing each letter with a Hylian symbol. ABCDEFGHIJKLMNOPQRSTUVWXYZ This alphabet is imperfect because letters are duplicated (D = W, E = K, G = Q, I = X, O = Z and P = T). Upper and lower case are ignored, as is punctuation. To write numbers, it is necessary to write the numbers in letters. Example: HYLIAN becomes  ",
+            "question": "How to write in Hylian, as in Zelda Skyward Sword?"
+        },
+        {
+            "answer": "Each Hylian symbol has an equivalent in the Latin alphabet, translating a word amounts to replacing each symbol with the associated letter. The problem is that the alphabet is flawed and so keep in mind that D = W, E = K, G = Q, I = X, O = Z and P = T Example:  translates ZELDA ",
+            "question": "How to decrypt Hylian from Zelda Skyward Sword?"
+        },
+        {
+            "answer": "The message is composed of rounded symbols, some resembling the Latin characters. References to Zelda game series, Link, or the Zelda / Hyrule universe is a clue. There are many variations of the Hylian language as you play Zelda games. ",
+            "question": "How to recognize an Hylian Skyward Sword ciphertext?"
+        },
+        {
+            "answer": "In Skyward Sword, there are sometimes traces of the Hylian language of Twilight Princess which is slightly different. ",
+            "question": "What are the variants of the Hylian Skyward Sword cipher?"
+        }
+    ],
+    "tags": [
+        "hylian",
+        "hyrule",
+        "zelda",
+        "skyward",
+        "sword",
+        "link"
+    ],
+    "title": "Hylian Language (Skyward Sword)"
+}

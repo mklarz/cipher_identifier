@@ -1,0 +1,100 @@
+{
+    "charset_information": {
+        "ascii_codes": [
+            33,
+            63,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+        ],
+        "characters": [
+            "!",
+            "?",
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+        ],
+        "charset": "!?ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    },
+    "description": "The Pokemon Unown (Pokedex #201) is a Psy Pokemon of the 2nd generation which can take different forms that imitate letters of the Latin alphabet.",
+    "questions": [
+        {
+            "answer": "The Pokemon Unown is a Pokemon (Psy type) of the 2nd generation, with the Pokedex number 201. Unown has the particularity of being flat and of having several possible shapes/forms. There are 28 shapes, 26 that are similar to Latin alphabet letters and 2 others, added with the next generations: the ? (Question mark) and the ! (exclamation mark). The pokemon #201 Unown is called Zarbi (slang for Bizarre) in French, Unown is certainly a modified spelling of unknown. ",
+            "question": "What is the Unown Pokemon ?"
+        },
+        {
+            "answer": "Encryption is a substitution of a character by a symbol (one of the shape of the Pokemon). Example: DCODE is encoded  ",
+            "question": "How to encrypt using Unown Pokemon ?"
+        },
+        {
+            "answer": "Deciphering is a substitution of each symbol by the corresponding character. The similarity of the forms of the Pokemon Zarbi with the letters of the Latin alphabet makes the decoding almost automatic visually. Example:  correspond to the plain text POKEMON. ",
+            "question": "How to decrypt using Unown Pokemon?"
+        },
+        {
+            "answer": "The symbols of the message are all composed of an eye associated with one or more straight lines or circle's arc. Any reference to pok\u00e9mons, their evolution, or to Pikachu or Ash characters are clues. ",
+            "question": "How to recognize an Unown alphabet ciphertext?"
+        }
+    ],
+    "tags": [
+        "unown",
+        "zarbi",
+        "pokemon",
+        "201",
+        "alphabet",
+        "code",
+        "psy",
+        "eye",
+        "flat",
+        "shape",
+        "bizarre",
+        "unknown",
+        "translator"
+    ],
+    "title": "Unown Pokemon Alphabet"
+}

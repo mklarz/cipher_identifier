@@ -1,0 +1,112 @@
+{
+    "charset_information": {
+        "ascii_codes": [
+            32,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+        ],
+        "characters": [
+            " ",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+        ],
+        "charset": " 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    },
+    "description": "Betamaze is a cipher by alphanumeric substitution of the characters by an image, which, once connected to others, forms a kind of labyrinth (maze in English).",
+    "questions": [
+        {
+            "answer": "Betamaze uses different square tiles for each character, so there are as many tiles as characters (letters / digits) in the message, it is an alphabetic substitution. Example: 'MAZE' is coded  Betamaze tiles has no notion of rotation, so each block can be oriented in any direction. Also the blocks must be glued together to represent as much as possible a labyrinth path (or any drawing). ",
+            "question": "How to encrypt using Betamaze cipher?"
+        },
+        {
+            "answer": "To decipher Betamaze, isolate each square blocks and identify to which they correspond in the Betamaze alphabet. The orientation of the block does not matter but can be embarrassing to find the right one. Example:  is translated DCODE ",
+            "question": "How to decrypt Betamaze cipher?"
+        },
+        {
+            "answer": "Betamaze looks like a maze, or maybe a QR code with squares and triangles. Example: BETAMAZE written with itself : ",
+            "question": "How to recognize a Betamaze ciphertext?"
+        },
+        {
+            "answer": "The author of Betamaze is Terrana Cliff, art student from California in 2008. ",
+            "question": "When Betamaze have been invented ?"
+        }
+    ],
+    "tags": [
+        "betamaze",
+        "maze",
+        "path",
+        "drawing",
+        "beta",
+        "terrana",
+        "cliff"
+    ],
+    "title": "Betamaze Cipher"
+}

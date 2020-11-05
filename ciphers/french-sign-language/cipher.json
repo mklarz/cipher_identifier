@@ -1,0 +1,87 @@
+{
+    "charset_information": {
+        "ascii_codes": [
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+        ],
+        "characters": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+        ],
+        "charset": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    },
+    "description": "Sign Language is a visual language used by the deaf and mute to communicate. It has a visual alphabet that allows to spell words.",
+    "questions": [
+        {
+            "answer": "The sign language encryption can be of two types, either the words are encoded by their own sign or the letters of the words are signed separately. Example: SIGN can be signed with letters S,I,G,N :  Source of images: langage-des-signes.com dCode does not offer a sign language dictionary, only the 26 letters of the alphabet from A to Z to spell the words. ",
+            "question": "How to encrypt using Sign Language (France) cipher?"
+        },
+        {
+            "answer": "The decryption of Sign Language is entirely visual. If the words or names have their own sign, then there is no other way than to know them or find them in a dictionary. Otherwise, if the word is spelled, each sign corresponds to a letter. Example:  translates DCODE ",
+            "question": "How to decrypt Sign Language (France) cipher?"
+        },
+        {
+            "answer": "The message is entirely based on the gestures of the arm and especially the hands and fingers. All references to people who are deaf are a clue. ",
+            "question": "How to recognize Sign Language?"
+        }
+    ],
+    "tags": [
+        "sign",
+        "signed",
+        "language",
+        "deaf",
+        "lang",
+        "grammar",
+        "lsf",
+        "french"
+    ],
+    "title": "French Sign Language"
+}

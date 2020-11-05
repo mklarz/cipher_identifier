@@ -1,0 +1,89 @@
+{
+    "charset_information": {
+        "ascii_codes": [
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+        ],
+        "characters": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+        ],
+        "charset": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    },
+    "description": "This version of the Hylian is a modification of the Hylian language present in previous games: Twilight Princess or Skyward Sword but identical to A Link Between Worlds.",
+    "questions": [
+        {
+            "answer": "The Hylian language is used in the game world Zelda, specifically in Breath of the Wild it is in the world of Hyrule. Hylian writing is similar to classical writing but replaces letters with Hylian symbols. Example: G becomes , H becomes , etc. This alphabet is imperfect because it has duplicate symbols D = G, E = W, F = R, J = T and O = Z. Uppercase and lowercase letters and punctuation are ignored. Writing the numbers involves writing the numbers in letters. Example: HYLIAN becomes  ",
+            "question": "How to write in Hylian, as in Zelda Breath of the Wild?"
+        },
+        {
+            "answer": "Each Hylian symbol corresponds to a letter of our alphabet, so reading/decoding a word is translating each symbol by its equivalent letter (A,B,C...). Example:  translates ZELDA (but also OWLGA due to the alphabet) ",
+            "question": "How to decrypt Hylian from Zelda Breath of the Wild?"
+        },
+        {
+            "answer": "A hylian message is composed of fairly rounded glyphs with different line widths. \u00a0 Allusions to the Zelda game, Link's character, or Zelda's universe are clues. \u00a0 ! The Hylian language has seen several variations during the series. ",
+            "question": "How to recognize an Hylian Breath of the Wild ciphertext?"
+        },
+        {
+            "answer": "In Breath of the Wild, the hylian symbols are identical to the A Link Between Worlds hylian, but there is also Sheikah Language. ",
+            "question": "What are the variants of the Hylian Breath of the Wild cipher?"
+        }
+    ],
+    "tags": [
+        "hylian",
+        "hyrule",
+        "zelda",
+        "link",
+        "breath",
+        "wild"
+    ],
+    "title": "Hylian Language (Breath of the Wild)"
+}

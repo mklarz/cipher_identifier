@@ -1,0 +1,86 @@
+{
+    "charset_information": {
+        "ascii_codes": [
+            46,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            87,
+            88,
+            89,
+            90
+        ],
+        "characters": [
+            ".",
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "W",
+            "X",
+            "Y",
+            "Z"
+        ],
+        "charset": ".ABCDEFGHIKLMNOPQRSTUWXYZ"
+    },
+    "description": "",
+    "questions": [
+        {
+            "answer": "The Theban alphabet (or sorcerer's alphabet) has 24 symbols and the encryption of a message consists of replacing the letters with a Theban symbol / glyph according to the correspondence table: LetterSymbolLetterSymbolLetterSymbolABCDEFGHI/JKLMNOPQRSTU/V/WXYZ. Example: THEBES is translated  The character  is used to end a sentence and is assimilated to a dot. ",
+            "question": "How to encrypt using Theban Alphabet cipher?"
+        },
+        {
+            "answer": "The Theban alphabet decryption replaces each symbol with the corresponding letter according to the table above. Example:  is translated HONORIUS ",
+            "question": "How to decrypt Theban Alphabet cipher?"
+        },
+        {
+            "answer": "The Theban symbols are similar to runes (runic alphabet), with an upper part similar to n, m or v, followed by a vertical line towards a lower part. The alphabet was used in Ozzy Osbourne's album: Diary of a Madman, in the anime Hellsing Ultimate, in the manga Black Butler or in the comic book Phonogram. ",
+            "question": "How to recognize the Theban Alphabet?"
+        },
+        {
+            "answer": "The first reference to this alphabet dates from 1518 in the book of Johannes Trithemius which attributes it to Honorius of Thebes.",
+            "question": "When Theban Alphabet have been invented ?"
+        }
+    ],
+    "tags": [
+        "theban",
+        "honorius",
+        "rune",
+        "sorcerer",
+        "alphabet"
+    ],
+    "title": "Theban Alphabet"
+}

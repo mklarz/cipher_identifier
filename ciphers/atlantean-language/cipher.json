@@ -1,0 +1,134 @@
+{
+    "charset_information": {
+        "ascii_codes": [
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            99,
+            115,
+            116
+        ],
+        "characters": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z",
+            "c",
+            "s",
+            "t"
+        ],
+        "charset": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZcst"
+    },
+    "description": "The Atlantis is a fictional language composed of symbols created for the Disney movie: Atlantis, the lost empire by Mark Okrand.",
+    "questions": [
+        {
+            "answer": "The Atlantic alphabet is actually an simili-substitution of the Latin alphabet. Each letter of the alphabet corresponds to an Atlantean symbol. Example: ATLANTIS is written as  That the language is adapted to an Anglosaxon public, 3 other characters have been introduced for CH, SH and TH (current sounds in English). Example: CH can be written as  The numbers are also transcribed with points and bars. Example: 1996 can be written as  An Atlantean multi-line message must be written in boustrophedon, writing every odd line in reverse (from right to left). ",
+            "question": "How to encrypt/write using Atlantean language cipher?"
+        },
+        {
+            "answer": "The transcription of Atlantean words in the Latin alphabet is done by substituting the Atlantics characters with the corresponding letters / digits. Example:  is translated DISNEY The Atlantean is read in boustrophedon, a text on several lines must be read from left to right then from right to left, etc., changing at each line. ",
+            "question": "How to decrypt/translate Atlante language?"
+        },
+        {
+            "answer": "Numbers from 1 to 10 are called 1din2dut3sey4kut5sha6luk7tos8ya9nit10ehep ",
+            "question": "What is the names of the digits in atlantean?"
+        },
+        {
+            "answer": "Atlantean language and symbols are from Proto-Indo-European inspiration. The symbols are rounded and resemble native American or Sumerian characters. ",
+            "question": "How to recognize a Atlantean ciphertext?"
+        },
+        {
+            "answer": "The language is anglosaxon consonant, here is the pronunciation (in phonetic alphabet) to use: A\u0251,\u0259AH\u0251BbCkDdE\u025bEEiEHeFfGgHxIi,\u026aIH\u026aKkKHxLlMmNnOo,\u0254OAoOH\u0254OOuPpQkRr,\u027eSsSH\u0283TtU\u028aUH\u0259Vv,wWwXksYjZz ",
+            "question": "How to prononce correctly Atlantean words?"
+        },
+        {
+            "answer": "The Atlantean language is names 'Dig Adlantisag' in Atlantean.",
+            "question": "How to say Atlantean in Atlantean?"
+        },
+        {
+            "answer": "Atlantean was created for the movie Atlantis between 1996 and 2001. ",
+            "question": "When the Atlantean have been invented ?"
+        }
+    ],
+    "tags": [
+        "atlantean",
+        "atlantide",
+        "alphabet",
+        "disney",
+        "lost",
+        "empire",
+        "jules",
+        "verne",
+        "milo",
+        "thatch",
+        "kellogg",
+        "cereal",
+        "okrand"
+    ],
+    "title": "Atlantean Language"
+}
