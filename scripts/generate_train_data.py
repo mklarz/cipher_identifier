@@ -302,7 +302,12 @@ def generate_image(
 
         # Append the image to the symbol
         offset = (x, y)
-        background.paste(image, offset, mask=image)
+        if image.mode == "RGBA":
+            # Image is transparent, let's add a mask
+            background.paste(image, offset, mask=image)
+        else:
+            background.paste(image, offset)
+
         x += width + padding
 
     return background, tesseract_boxes
