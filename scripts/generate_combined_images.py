@@ -1,8 +1,9 @@
 #!/usr/bin/python
-import os
-import math
 import glob
+import math
+import os
 import pathlib
+
 from PIL import Image, ImageDraw
 
 # White background
@@ -108,12 +109,12 @@ def generate_combined_image(
 
         # Sum the height of the rows and add padding
         combined_height = sum([row[1] for row in rows])
-        #combined_height += (padding_pixels * (len(rows) + (1 if add_initial_padding else 0)))
+        # combined_height += (padding_pixels * (len(rows) + (1 if add_initial_padding else 0)))
         combined_height += padding_pixels * (len(rows) * 2)
         combined_height += padding_pixels if add_initial_padding else 0
 
     # Create the initial image with white background
-    combined = Image.new('RGB', (combined_width, combined_height), background_color)
+    combined = Image.new("RGB", (combined_width, combined_height), background_color)
 
     # Initial positioning
     reset_x = padding_pixels if add_initial_padding else 0
@@ -129,7 +130,6 @@ def generate_combined_image(
 
     # Loop through all the images and add them to the combined image
     row_index = 0
-
 
     for i, image in enumerate(images):
         image_index = i + 1
@@ -164,11 +164,9 @@ def generate_combined_image(
                 line_y_end += line_y_start
 
             draw = ImageDraw.Draw(combined)
-            draw.rectangle([
-                    (line_x, line_y_start),
-                    (line_x + grid_line_width, line_y_end)
-                ],
-                fill=grid_line_color
+            draw.rectangle(
+                [(line_x, line_y_start), (line_x + grid_line_width, line_y_end)],
+                fill=grid_line_color,
             )
 
         """
@@ -187,7 +185,11 @@ def generate_combined_image(
 
         if not is_new_row:
             # Just increase the current x position
-            x += image_final_width if identical else (image.size[0] + (padding_pixels * 2))
+            x += (
+                image_final_width
+                if identical
+                else (image.size[0] + (padding_pixels * 2))
+            )
         else:
             # New row
             x = reset_x
@@ -199,11 +201,9 @@ def generate_combined_image(
                 line_x = padding_pixels if add_initial_padding else 0
                 line_y = y - padding_pixels - (grid_line_width / 2)
                 draw = ImageDraw.Draw(combined)
-                draw.rectangle([
-                        (line_x, line_y),
-                        (x_end, line_y + grid_line_width)
-                    ],
-                    fill=grid_line_color
+                draw.rectangle(
+                    [(line_x, line_y), (x_end, line_y + grid_line_width)],
+                    fill=grid_line_color,
                 )
 
             row_index += 1
@@ -228,6 +228,7 @@ for cipher in CIPHERS:
             grid_line_width=GRID_LINE_WIDTH,
             grid_line_color=GRID_LINE_COLOR,
         )
-        combined_path = "{}/combined{}.png".format(cipher_path, "_grid" if draw_grid else "")
+        combined_path = "{}/combined{}.png".format(
+            cipher_path, "_grid" if draw_grid else ""
+        )
         combined_image.save(combined_path, "PNG")
-

@@ -1,17 +1,18 @@
 #!/usr/bin/python
-import os
-import math
+import collections
 import glob
-import time
 import json
+import math
+import os
 import pathlib
 import random
-import collections
+import time
+
 import numpy as np
 from PIL import Image, ImageDraw
 
-DEFAULT_IMAGE_MIN_SIZE = (450, 100) # (width, height)
-DEFAULT_IMAGE_MAX_SIZE = (800, 300) # (width, height)
+DEFAULT_IMAGE_MIN_SIZE = (450, 100)  # (width, height)
+DEFAULT_IMAGE_MAX_SIZE = (800, 300)  # (width, height)
 PADDING_MIN_MAX = (1, 4)
 SPACE_PADDING_MIN_MAX = (5, 10)
 DEFAULT_IMAGE_MINMAX_SIZE = (DEFAULT_IMAGE_MIN_SIZE, DEFAULT_IMAGE_MAX_SIZE)
@@ -49,20 +50,22 @@ CHARSET_SYMBOL_MAPPING = {
     "s": "$",
 }
 
+
 def transform_characters(sentence, sentence_charset, special_charset, chance=0.9):
     # Replace characters in the sentence with the specified charset (with a chance of swapping)
     sentence_lowercase = sentence.lower()
     sentence = list(sentence)
 
     for index, character in enumerate(sentence_lowercase):
-        if character not in special_charset \
-        or special_charset[character] not in sentence_charset \
-        or random.random() > chance:
+        if (
+            character not in special_charset
+            or special_charset[character] not in sentence_charset
+            or random.random() > chance
+        ):
             continue
         sentence[index] = special_charset[character]
 
     return "".join(sentence)
-
 
 
 def transform_sentence(sentence, sentence_charset, leetspeak=False, special=False):
@@ -70,10 +73,7 @@ def transform_sentence(sentence, sentence_charset, leetspeak=False, special=Fals
     transformed_sentence = None
     if leetspeak and special:
         transformed_sentence = transform_characters(
-            sentence,
-            sentence_charset,
-            CHARSET_LEETSPEAK_MAPPING,
-            chance=0.4
+            sentence, sentence_charset, CHARSET_LEETSPEAK_MAPPING, chance=0.4
         )
         transformed_sentence = transform_characters(
             transformed_sentence,
@@ -93,7 +93,11 @@ def transform_sentence(sentence, sentence_charset, leetspeak=False, special=Fals
             CHARSET_SYMBOL_MAPPING,
         )
 
-    return transformed_sentence if transformed_sentence and sentence != transformed_sentence else None
+    return (
+        transformed_sentence
+        if transformed_sentence and sentence != transformed_sentence
+        else None
+    )
 
 
 def word_characters_exists_in_charset(word, charset, case_insensitive=False):
@@ -108,13 +112,14 @@ def word_characters_exists_in_charset(word, charset, case_insensitive=False):
 
     return True
 
+
 def generate_sentences(
     charset,
     wordlist,
     limit,
     add_special_sentences=True,
     add_digit_sentences=True,
-    digit_sentences_ratio=10 # Everything 10th sentence will be digits only
+    digit_sentences_ratio=10,  # Everything 10th sentence will be digits only
 ):
     # Shuffle the provided wordlist and transform it into a Deque object
     random.shuffle(wordlist)
@@ -151,9 +156,11 @@ def generate_sentences(
         # How many words do we want in the sentence
         sentence_word_count = random.randint(1, 6)
 
-        if add_digit_sentences \
-        and charset_has_digits \
-        and sentence_count % digit_sentences_ratio == 0:
+        if (
+            add_digit_sentences
+            and charset_has_digits
+            and sentence_count % digit_sentences_ratio == 0
+        ):
             # This sentence should be digits only
             digits = []
             for _ in range(sentence_word_count):
@@ -170,7 +177,9 @@ def generate_sentences(
                 word_lowercase = word.lower()
 
                 # Check if the characters in the word exist in our charset
-                if not word_characters_exists_in_charset(word_lowercase, charset_lowercase):
+                if not word_characters_exists_in_charset(
+                    word_lowercase, charset_lowercase
+                ):
                     # A character in the word does not exist in our charset, skip this word and continue
                     continue
 
@@ -190,10 +199,12 @@ def generate_sentences(
         sentences.add(sentence)
         sentence_count += 1
 
-        if add_special_sentences \
-        and sentence_count < limit \
-        and sentence_count % digit_sentences_ratio != 0 \
-        and (charset_has_digits or charset_has_specials):
+        if (
+            add_special_sentences
+            and sentence_count < limit
+            and sentence_count % digit_sentences_ratio != 0
+            and (charset_has_digits or charset_has_specials)
+        ):
             # Let's add additional a special (typical CTF) sentence to the list
             special_sentence = transform_sentence(
                 sentence,
@@ -213,25 +224,27 @@ def generate_sentences(
 def get_random_image_size(image_minmax_size):
     return (
         random.randint(
-            image_minmax_size[0][0], # min width
-            image_minmax_size[1][0], # max width
+            image_minmax_size[0][0],  # min width
+            image_minmax_size[1][0],  # max width
         ),
         random.randint(
-            image_minmax_size[0][0], # min height
-            image_minmax_size[1][0], # max height
+            image_minmax_size[0][0],  # min height
+            image_minmax_size[1][0],  # max height
         ),
     )
+
 
 def get_random_color():
     # Make sure we don't get a black image
     min_value = 10
     max_value = 256
     return (
-        random.randrange(min_value, max_value), # R
-        random.randrange(min_value, max_value), # G
-        random.randrange(min_value, max_value), # B
-        random.randrange(min_value, max_value), # A
+        random.randrange(min_value, max_value),  # R
+        random.randrange(min_value, max_value),  # G
+        random.randrange(min_value, max_value),  # B
+        random.randrange(min_value, max_value),  # A
     )
+
 
 def is_overlap(l1, r1, l2, r2):
     # https://stackoverflow.com/a/54489667
@@ -249,14 +262,8 @@ def tesseract_box_string(character, left, bottom, right, top, page=0):
     # Coordinates for ecah symbol in the iamge
     # NB! (0, 0) at bottom-left corner of the image!
     # See https://tesseract-ocr.github.io/tessdoc/Training-Tesseract-%E2%80%93-Make-Box-Files.html
-    return "{} {} {} {} {} {}\n".format(
-        character,
-        left,
-        bottom,
-        right,
-        top,
-        page
-    )
+    return "{} {} {} {} {} {}\n".format(character, left, bottom, right, top, page)
+
 
 def generate_image(
     images,
@@ -290,7 +297,7 @@ def generate_image(
 
     # Intialize the background image
     background_size = (background_width, background_height)
-    background = Image.new('RGBA', background_size, background_color)
+    background = Image.new("RGBA", background_size, background_color)
     x = padding
     y = padding
 
@@ -310,7 +317,7 @@ def generate_image(
             left=x,
             bottom=background_height - y - height,
             right=x + width,
-            top=background_height - y 
+            top=background_height - y,
         )
 
         # Append the image to the symbol
@@ -322,17 +329,17 @@ def generate_image(
 
 
 # TODO: start using this
-def place_images(images, image_minmax_size,  background_color=(255,255,255)):
+def place_images(images, image_minmax_size, background_color=(255, 255, 255)):
     size = get_random_image_size(image_minmax_size)
     print("size={}".format(size), end=", ")
 
     # White background image
-    background = Image.new('RGB', size, (255, 255, 255))
+    background = Image.new("RGB", size, (255, 255, 255))
 
     # Random color to fade into the white background
     background_color = get_random_color()
     print("background_color={}".format(background_color), end=", ")
-    foreground = Image.new('RGBA', size, background_color)
+    foreground = Image.new("RGBA", size, background_color)
 
     # We now have our base image
     background.paste(foreground, (0, 0), foreground)
@@ -371,7 +378,9 @@ def place_images(images, image_minmax_size,  background_color=(255,255,255)):
             # right-bottom point
             l2, r2 = (x, y), (x + img.size[0], y + img.size[1])
 
-            if all(not is_overlap(l1, r1, l2, r2) for l1, r1 in alread_paste_point_list):
+            if all(
+                not is_overlap(l1, r1, l2, r2) for l1, r1 in alread_paste_point_list
+            ):
                 # save alreay pasted points for checking overlap
                 alread_paste_point_list.append((l2, r2))
                 background.paste(img, (x, y), img)
@@ -379,9 +388,11 @@ def place_images(images, image_minmax_size,  background_color=(255,255,255)):
 
     return background
 
+
 def generate_background_image(size, color):
     # White background image
-    background = Image.new('RGB', size, (255, 255, 255))
+    background = Image.new("RGB", size, (255, 255, 255))
+
 
 def get_symbol_characters(symbols):
     # Map the ASCII codes to characters
@@ -392,6 +403,7 @@ def get_symbol_characters(symbols):
         c = chr(d)
         symbol_characters += c
     return symbol_characters
+
 
 def generate_random_symbols(images, divider=6):
     image_count = len(images)
@@ -406,6 +418,7 @@ def generate_random_symbols(images, divider=6):
     random.shuffle(images)
     return images[0:symbol_count]
 
+
 def get_symbols_from_text(symbol_mapping, text):
     symbols = []
     for character in text:
@@ -415,6 +428,7 @@ def get_symbols_from_text(symbol_mapping, text):
             symbols.append(symbol_mapping[character])
     return symbols
 
+
 def generate_symbol_mapping(images):
     mapping = {}
     for image in images:
@@ -422,11 +436,14 @@ def generate_symbol_mapping(images):
         mapping[c] = image
     return mapping
 
-def generate_train_data(cipher, wordlist, limit=1000, image_minmax_size=DEFAULT_IMAGE_MINMAX_SIZE):
+
+def generate_train_data(
+    cipher, wordlist, limit=1000, image_minmax_size=DEFAULT_IMAGE_MINMAX_SIZE
+):
     cipher_path = "{}/{}".format(CIPHERS_PATH, cipher)
     cipher_images_path = "{}/images".format(cipher_path)
     train_images_path = "{}/{}".format(TRAIN_DATA_PATH, cipher)
-    os.makedirs(train_images_path , exist_ok=True)
+    os.makedirs(train_images_path, exist_ok=True)
     image_paths = sorted(glob.glob("{}/*.png".format(cipher_images_path)))
 
     # TODO: normalize/clean images for training
@@ -439,17 +456,19 @@ def generate_train_data(cipher, wordlist, limit=1000, image_minmax_size=DEFAULT_
     print("Cipher charset:", charset)
     digit_count = len(str(limit))
 
-    sentences = generate_sentences(charset, wordlist, limit, add_special_sentences=False)
+    sentences = generate_sentences(
+        charset, wordlist, limit, add_special_sentences=False
+    )
 
     for nr, sentence in enumerate(sentences):
         start_time = time.process_time()
-        print("Generating image #{} [sentence=\"{}\"".format(nr + 1, sentence), end=", ")
+        print('Generating image #{} [sentence="{}"'.format(nr + 1, sentence), end=", ")
 
         symbols = get_symbols_from_text(symbol_mapping, sentence)
 
-        train_filename = str(nr).zfill(digit_count) # 0000, 0001, 0002, etc.
+        train_filename = str(nr).zfill(digit_count)  # 0000, 0001, 0002, etc.
 
-        #operation = random.randint(1, 3)
+        # operation = random.randint(1, 3)
         # TODO: remove, we only use the first operation now
         operation = 1
         print("operation={}".format(operation), end=", ")
@@ -465,7 +484,7 @@ def generate_train_data(cipher, wordlist, limit=1000, image_minmax_size=DEFAULT_
             # TODO: enable again later?
             # image = place_images(symbols, image_minmax_size)
             pass
-        
+
         # Save the image
         train_image_filename = "{}.png".format(train_filename)
         print("filename={}".format(train_image_filename), end=", ")
@@ -475,7 +494,6 @@ def generate_train_data(cipher, wordlist, limit=1000, image_minmax_size=DEFAULT_
         with open("{}/{}.box".format(train_images_path, train_filename), "w") as f:
             f.write(tesseract_boxes)
 
-        # TODO: tesseract
         # Plaintext file for tesseract
         with open("{}/{}.gt.txt".format(train_images_path, train_filename), "w") as f:
             f.write(sentence)

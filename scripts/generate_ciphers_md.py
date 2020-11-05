@@ -1,8 +1,8 @@
 #!/usr/bin/python
-import re
-import os
 import glob
+import os
 import pathlib
+import re
 import urllib.parse
 
 md_text = "# Cipher list\n"

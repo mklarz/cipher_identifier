@@ -1,0 +1,7 @@
+-r base.txt
+
+tox==3.20.1
+
+-r flake8.txt
+-r isort.txt
+-r black.txt

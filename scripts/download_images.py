@@ -1,28 +1,33 @@
 #!/usr/bin/python
-import os
-import re
-import cv2
-import pathlib
-import requests
 import argparse
+import os
+import pathlib
+import re
+
+import cv2
 import numpy as np
+import requests
 
 BASE_PATH = "{}/ciphers".format(pathlib.Path(__file__).resolve().parents[1].absolute())
 BASE_URL = "https://www.dcode.fr"
 HOME_MESSAGE = "dCode</a> offers tools to win for sure, for example the <"
 
+
 def crop_image(img):
     # https://stackoverflow.com/a/49907762
     # Modified to check borders
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    gray = 255*(gray < 128).astype(np.uint8) # To invert the text to white
+    gray = 255 * (gray < 128).astype(np.uint8)  # To invert the text to white
     if not gray.any():
         # Found no borders, return original image
         return img
-    coords = cv2.findNonZero(gray) # Find all non-zero points (text)
-    x, y, w, h = cv2.boundingRect(coords) # Find minimum spanning bounding box
-    rect = img[y:y+h, x:x+w] # Crop the image - note we do this on the original image
+    coords = cv2.findNonZero(gray)  # Find all non-zero points (text)
+    x, y, w, h = cv2.boundingRect(coords)  # Find minimum spanning bounding box
+    rect = img[
+        y : y + h, x : x + w
+    ]  # Crop the image - note we do this on the original image
     return rect
+
 
 def image_sizes_are_identical(images):
     last_size = None
@@ -35,12 +40,17 @@ def image_sizes_are_identical(images):
     else:
         return True
 
+
 def download_cipher_images(cipher, redownload=False):
     cipher_base_path = "{}/{}".format(BASE_PATH, cipher)
 
     # Check if cipher exists
     if not redownload and os.path.exists(cipher_base_path):
-        print("[WARNING] Cipher '{}' exists in {}, ignoring cipher.".format(cipher, BASE_PATH))
+        print(
+            "[WARNING] Cipher '{}' exists in {}, ignoring cipher.".format(
+                cipher, BASE_PATH
+            )
+        )
         print("Use the redownload arugment (-r, --redownload) to force a redownload")
         return
 
@@ -58,7 +68,9 @@ def download_cipher_images(cipher, redownload=False):
         print("Tried URL:", url)
         exit(1)
 
-    js_string = re.findall(r'\<script\>\$\.cryptoarea\.path \= \'(.*?)\<\/script\>', content)
+    js_string = re.findall(
+        r"\<script\>\$\.cryptoarea\.path \= \'(.*?)\<\/script\>", content
+    )
     if len(js_string) == 0:
         print("[ERROR] Could not extract the JS to find the images")
         exit(1)
@@ -69,9 +81,9 @@ def download_cipher_images(cipher, redownload=False):
     images_url = string_split[0][:-1]
 
     # Find the array of char(x).
-    match = re.search(r'\[(.*?)\]', string_split[1]).group(1)
+    match = re.search(r"\[(.*?)\]", string_split[1]).group(1)
     # Find all char(x).png (pictures of the symbols).
-    chars = re.findall(r'\((.*?)\)', match)
+    chars = re.findall(r"\((.*?)\)", match)
 
     # Create directory if it doesn't exist
     os.makedirs(cipher_images_path, exist_ok=True)
@@ -90,11 +102,19 @@ def download_cipher_images(cipher, redownload=False):
         image_urlname = "char({}).png".format(i)
         image_path = "{}/{}".format(cipher_images_path, image_filename)
         image_url = "{}/{}".format(images_url, image_urlname)
-        print("Fetching image: '{}' and saving it to {}".format(image_urlname, cipher_images_path))
+        print(
+            "Fetching image: '{}' and saving it to {}".format(
+                image_urlname, cipher_images_path
+            )
+        )
         r = requests.get(image_url)
 
         if r.status_code != 200:
-            print("[ERROR] Something went wrong when downloading image, status code: {}".format(r.status_code))
+            print(
+                "[ERROR] Something went wrong when downloading image, status code: {}".format(
+                    r.status_code
+                )
+            )
             exit(1)
 
         # Save the images for now, might need to overwrite them if they have borders
@@ -131,10 +151,11 @@ def download_cipher_images(cipher, redownload=False):
         cv2.waitKey(0)
         cv2.destroyAllWindows()
         exit(0)
-        """ 
+        """
         cv2.imwrite(image_path, image)
 
     print("Done!")
+
 
 example_text = """Examples:
  # Download images for a specific cipher (-c, --cipher)
@@ -155,20 +176,29 @@ parser = argparse.ArgumentParser(
     formatter_class=argparse.RawDescriptionHelpFormatter,
 )
 parser.add_argument(
-    "-c", "--cipher",
-    help="the name of the cipher to download images from"
+    "-c", "--cipher", help="the name of the cipher to download images from"
 )
 parser.add_argument(
-    "-cf", "--ciphers-file", default="ciphers.txt",
-    help="file containing the list of ciphers"
+    "-cf",
+    "--ciphers-file",
+    default="ciphers.txt",
+    help="file containing the list of ciphers",
 )
 parser.add_argument(
-    "-a", "--all", default=False, const=True, nargs='?',
-    help="download all the ciphers specified in the ciphers file"
+    "-a",
+    "--all",
+    default=False,
+    const=True,
+    nargs="?",
+    help="download all the ciphers specified in the ciphers file",
 )
 parser.add_argument(
-    "-r", "--redownload", default=False, const=True, nargs='?',
-    help="force redownload of ciphers and their images."
+    "-r",
+    "--redownload",
+    default=False,
+    const=True,
+    nargs="?",
+    help="force redownload of ciphers and their images.",
 )
 
 args = parser.parse_args()
