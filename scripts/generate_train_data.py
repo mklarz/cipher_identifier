@@ -179,7 +179,7 @@ def generate_sentences(
                     """
                     # Randomly captialize the first character if it exists in the charset:
                     c_upper = word[0].upper()
-                    c_lower = word[0].upper()
+                    c_lower = word[0].lower()
                     if c_upper in charset and c_lower in charset:
                         # 50/50 chance to captialize the word
                         if random.random() > 0.5:
