@@ -32,33 +32,91 @@ CIPHER_LANGUAGES = sorted(
 )
 
 
-def preprocess_image(image_path, debug=False):
+def preprocess_image(
+    image_path,
+    grayscale=True,
+    remove_noise=True,
+    thresholding=True,
+    auto_crop=True,
+    debug=False
+):
     # TODO: need to add borders if they're missing, else we get 0% confidence because of no padding
     image = cv2.imread(image_path)
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    if debug:
+        cv2.imshow('original', image)
+        cv2.waitKey(0)
+
+    # Grayscale
+    if not grayscale:
+        process_image = image.copy()
+    else:
+        process_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        if debug:
+            cv2.imshow('grayscale', process_image)
+            cv2.waitKey(0)
 
     # Remove noise
-    gray = cv2.medianBlur(gray, 5)
+    if remove_noise:
+        process_image = cv2.medianBlur(process_image, 5)
+        if debug:
+            cv2.imshow('median_blur', process_image)
+            cv2.waitKey(0)
 
     # Thresholding
-    gray = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+    if thresholding:
+        process_image = cv2.threshold(process_image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+        if debug:
+            cv2.imshow('thresholding', process_image)
+            cv2.waitKey(0)
 
-    # Let's prepare for cropping the image to the text
+    # Auto crop
+    if auto_crop:
+        # Let's prepare for cropping the image to the text
 
-    # Reverse the color with thresholding
-    threshold = cv2.threshold(gray, 0, 255, cv2.THRESH_OTSU | cv2.THRESH_BINARY_INV)[1]
+        # Reverse the color with thresholding
+        threshold = cv2.threshold(process_image, 0, 255, cv2.THRESH_OTSU | cv2.THRESH_BINARY_INV)[1]
+        if debug:
+            cv2.imshow('auto crop - threshold - invert', threshold)
+            cv2.waitKey(0)
 
-    # Dilate
-    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (15, 3))
-    dilation = cv2.dilate(threshold, kernel, iterations=1)
+        # Dilate
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (15, 3))
+        dilation = cv2.dilate(threshold, kernel, iterations=1)
+        if debug:
+            cv2.imshow('auto crop - dilation', dilation)
+            cv2.waitKey(0)
 
-    # Find the contour of the text
-    contours = cv2.findContours(dilation, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)[0]
-    contour = contours[0]
+        # Find the contour of the text
+        contours = cv2.findContours(dilation, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)[0]
+        chosen_contour = 0
+        contour = contours[chosen_contour]
 
-    # Crop the image to the contour and return it
-    x, y, w, h = cv2.boundingRect(contour)
-    return gray[y : y + h, x : x + w]
+        if debug:
+            print("Found {} contours".format(len(contours)))
+            # Draw all the contours
+            contours_image = image.copy()
+            cv2.drawContours(contours_image, contours, -1, (0, 255, 0), 1)
+            cv2.imshow('auto crop - all_contours', contours_image)
+            cv2.waitKey(0)
+
+        if debug:
+            # Draw the chosen contour
+            contour_image = image.copy()
+            cv2.drawContours(contour_image, contours, chosen_contour, (0, 255, 0), 1)
+            cv2.imshow('auto crop - chosen contour', contour_image)
+            cv2.waitKey(0)
+
+
+        # Crop the image to the contour and return it
+        x, y, w, h = cv2.boundingRect(contour)
+        process_image = process_image[y : y + h, x : x + w]
+
+    if debug:
+        cv2.imshow('final', process_image)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+
+    return process_image
 
 
 """
@@ -82,7 +140,15 @@ Page segmentation modes.
 """
 PSM_MODE = PSM.SINGLE_LINE
 
-image = preprocess_image(image_path, debug=True)
+# TODO: loop through each contour and check the confidence of each one
+image = preprocess_image(
+    image_path,
+    grayscale=True,
+    remove_noise=False,
+    thresholding=True,
+    auto_crop=True,
+    debug=False,
+)
 
 # Transform OpenCV image to a Pillow image for tesseract
 image = Image.fromarray(image)
@@ -98,7 +164,7 @@ for cipher_language in CIPHER_LANGUAGES:
         # TODO: Get confidence for each character / word?
         word_count = len(api.AllWordConfidences())
         confidence = api.MeanTextConf()
-        print(confidence, end="")
+        print("{}%".format(confidence), end="")
 
     cipher_results[cipher_language] = {
         "text": text,
