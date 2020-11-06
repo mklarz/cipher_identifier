@@ -161,22 +161,32 @@ def generate_sentences(
             while current_word_count < sentence_word_count:
                 # Select the next word in our shuffled wordlist
                 word = wordlist.pop()
-                # Lowercase it for more efficient comparison
-                word_lowercase = word.lower()
 
                 # Check if the characters in the word exist in our charset
-                if not word_characters_exists_in_charset(
-                    word_lowercase, charset_lowercase
-                ):
-                    # A character in the word does not exist in our charset, skip this word and continue
-                    continue
+                if charset_has_lower and charset_has_upper:
+                    # We cannot lowercase the characters as they are case sensitive
+                    if not word_characters_exists_in_charset(
+                        word, charset
+                    ):
+                        # A character in the word does not exist in our charset, skip this word and continue
+                        continue
 
-                if not charset_has_lower:
-                    # Charset does not have any lowercase words, let's uppercase the current word
-                    word = word.upper()
-                elif not charset_has_upper:
-                    # Charset does not have any uppercase words, let's use the lowercase one
-                    word = word_lowercase
+                else:
+                    # Lowercase it for more efficient comparison
+                    word_lowercase = word.lower()
+
+                    if not word_characters_exists_in_charset(
+                        word_lowercase, charset_lowercase
+                    ):
+                        # A character in the word does not exist in our charset, skip this word and continue
+                        continue
+
+                    if not charset_has_lower:
+                        # Charset does not have any lowercase words, let's uppercase the current word
+                        word = word.upper()
+                    elif not charset_has_upper:
+                        # Charset does not have any uppercase words, let's use the lowercase one
+                        word = word_lowercase
 
                 current_words.add(word)
                 current_word_count += 1
