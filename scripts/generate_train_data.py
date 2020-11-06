@@ -159,22 +159,48 @@ def generate_sentences(
             current_words = set()
             current_word_count = 0
             while current_word_count < sentence_word_count:
+                # Make sure we have enough words
+                wordlist_length = len(wordlist)
+                if wordlist_length == 0:
+                    print("[ERROR] Wordlist ran out of words!")
+                    exit(0)
+
                 # Select the next word in our shuffled wordlist
                 word = wordlist.pop()
 
+                # Lowercase it for more efficient comparison
+                word_lowercase = word.lower()
+
                 # Check if the characters in the word exist in our charset
                 if charset_has_lower and charset_has_upper:
-                    # We cannot lowercase the characters as they are case sensitive
+                    """
+                    If charset contains the uppercase of the first character in the word,
+                    then randomly upper case it. If not we should use the lowercase word.
+                    """
+                    # Randomly captialize the first character if it exists in the charset:
+                    c_upper = word[0].upper()
+                    c_lower = word[0].upper()
+                    if c_upper in charset and c_lower in charset:
+                        # 50/50 chance to captialize the word
+                        if random.random() > 0.5:
+                            word = c_upper + word[1:]
+                        else:
+                            word = c_lower + word[1:]
+                    elif c_upper in charset:
+                        # Captialize the first character in the word
+                        word = c_upper + word[1:]
+                    elif c_lower in charset:
+                        # Lowercase the word
+                        word = word_lowercase
+                    else:
+                        continue
+
                     if not word_characters_exists_in_charset(
                         word, charset
                     ):
                         # A character in the word does not exist in our charset, skip this word and continue
                         continue
-
                 else:
-                    # Lowercase it for more efficient comparison
-                    word_lowercase = word.lower()
-
                     if not word_characters_exists_in_charset(
                         word_lowercase, charset_lowercase
                     ):
